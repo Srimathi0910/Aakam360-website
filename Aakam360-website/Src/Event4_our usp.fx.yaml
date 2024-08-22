@@ -1,0 +1,171 @@
+"'Event4_our usp' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar4 As rectangle:
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName3 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =88
+        Size: =30
+        Text: ="Our USP"
+        Width: =Parent.Width
+        ZIndex: =2
+
+    Canvas4 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar4.Y + RectQuickActionBar4.Height
+        ZIndex: =3
+
+        DataCard10 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: |
+                =500
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label17 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =240
+                Size: =30
+                Text: ="Unleashing creativity through our collaboration."
+                Width: =567
+                X: =170
+                ZIndex: =1
+
+            Label18 As label:
+                Height: =264
+                Size: =30
+                Text: ="At Aakam, we pride ourselves on our unique approach to education that emphasizes innovation, creativity, and entrepreneurship."
+                Width: =582
+                X: =170
+                Y: =260
+                ZIndex: =2
+
+            Video1 As videoPlayback:
+                AutoStart: =true
+                Height: =395
+                Loop: =true
+                Media: =usp
+                ShowControls: =false
+                Width: =395
+                X: =868
+                Y: =87
+                ZIndex: =3
+
+        DataCard19 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =580
+            Width: =1366
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            Label20 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =172
+                Size: =40
+                Text: |-
+                    ="
+                    Our Unique Selling Point"
+                Width: =872
+                X: =298
+                ZIndex: =1
+
+            Image16 As image:
+                Image: ='future-skill'
+                X: =60
+                Y: =172
+                ZIndex: =2
+
+            Image16_1 As image:
+                Image: ='bring-together'
+                X: =438
+                Y: =415
+                ZIndex: =3
+
+            Image16_2 As image:
+                Image: ='early-map'
+                X: =817
+                Y: =172
+                ZIndex: =4
+
+            Label25 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =35
+                Size: =20
+                Text: ="Future Demand Skill"
+                Width: =292
+                X: =187
+                Y: =172
+                ZIndex: =5
+
+            Label25_1 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =35
+                Size: =20
+                Text: ="Early Mapping"
+                Width: =292
+                X: =917
+                Y: =172
+                ZIndex: =6
+
+            Label25_2 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =35
+                Size: =20
+                Text: ="Bring Together"
+                Width: =292
+                X: =555
+                Y: =415
+                ZIndex: =7
+
+            Label25_3 As label:
+                Height: =167
+                Size: =20
+                Text: ="Equipping students with the tools and expertise needed to thrive in a rapidly-evolving job market."
+                Width: =499
+                X: =187
+                Y: =172
+                ZIndex: =8
+
+            Label25_4 As label:
+                Height: =167
+                Size: =20
+                Text: ="Charting a course for success by setting clear goals and defining a path forward."
+                Width: =429
+                X: =932
+                Y: =172
+                ZIndex: =9
+
+            Label25_5 As label:
+                Height: =167
+                Size: =20
+                Text: ="Fostering collaboration and synergy between students, faculty, and industry for a brighter future."
+                Width: =529
+                X: =555
+                Y: =413
+                ZIndex: =10
+
+    Arrow1_5 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =68
+        OnSelect: =Navigate(Overall_event,ScreenTransition.Fade)
+        Width: =89
+        X: =57
+        Y: =20
+        ZIndex: =4
+

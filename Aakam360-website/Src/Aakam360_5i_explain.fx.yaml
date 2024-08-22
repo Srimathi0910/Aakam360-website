@@ -1,0 +1,142 @@
+Aakam360_5i_explain As screen:
+
+    Image4 As image:
+        Height: =150
+        Image: =industry
+        Width: =150
+        X: =36
+        Y: =68
+        ZIndex: =2
+
+    Image4_1 As image:
+        Height: =150
+        Image: =institution
+        Width: =150
+        X: =765
+        Y: =48
+        ZIndex: =3
+
+    Image4_2 As image:
+        Height: =150
+        Image: =incubation
+        Width: =150
+        X: =36
+        Y: =339
+        ZIndex: =4
+
+    Image4_3 As image:
+        Height: =150
+        Image: =innovation
+        Width: =150
+        X: =768
+        Y: =339
+        ZIndex: =5
+
+    Image4_4 As image:
+        Height: =150
+        Image: =internship
+        Width: =150
+        X: =419
+        Y: =593
+        ZIndex: =6
+
+    Label6 As label:
+        FontWeight: =FontWeight.Bold
+        Size: =25
+        Text: ="Industry"
+        Width: =174
+        X: =211
+        Y: =28
+        ZIndex: =7
+
+    Label6_1 As label:
+        Height: =200
+        Size: =20
+        Text: ="We understand industry needs for hiring, we provide dedicated/open infrastructure with high amenities."
+        Width: =417
+        X: =231
+        Y: =48
+        ZIndex: =8
+
+    Label6_2 As label:
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =25
+        Text: ="Institution"
+        Width: =216
+        X: =949
+        Y: =34
+        ZIndex: =9
+
+    Label6_3 As label:
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =25
+        Text: ="Incubation"
+        Width: =216
+        X: =231
+        Y: =313
+        ZIndex: =10
+
+    Label6_4 As label:
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =25
+        Text: ="Innovation"
+        Width: =216
+        X: =998
+        Y: =303
+        ZIndex: =11
+
+    Label6_5 As label:
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =25
+        Text: ="Internship"
+        Width: =216
+        X: =702
+        Y: =558
+        ZIndex: =12
+
+    Label6_6 As label:
+        Height: =200
+        Size: =20
+        Text: ="We have 2000+ student talent pools, 30+ live industry labs, 100+ research scholars for R&D with different industry knowledge."
+        Width: =417
+        X: =935
+        Y: =85
+        ZIndex: =13
+
+    Label6_7 As label:
+        Height: =200
+        Size: =20
+        Text: ="We encourage building new ideas, and provide space for young budding entrepreneurs and hire talent for their demand."
+        Width: =417
+        X: =215
+        Y: =363
+        ZIndex: =14
+
+    Label6_8 As label:
+        Height: =200
+        Size: =20
+        Text: ="We are providing innovative solutions to industrial problems and disrupting industry with game changing innovation."
+        Width: =417
+        X: =949
+        Y: =338
+        ZIndex: =15
+
+    Label6_9 As label:
+        Height: =200
+        Size: =20
+        Text: ="Students evaluate corporate culture, periodic enhancement of curriculum with internships."
+        Width: =417
+        X: =632
+        Y: =568
+        ZIndex: =16
+
+    Arrow2 As arrow.backArrow:
+        OnSelect: =Navigate(Aakam360_5i_image,ScreenTransition.Fade)
+        X: =36
+        Y: =18
+        ZIndex: =17
+

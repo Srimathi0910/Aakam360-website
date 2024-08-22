@@ -1,0 +1,204 @@
+"Contact_us As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1 As rectangle:
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    Canvas1 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1.Y + RectQuickActionBar1.Height
+        ZIndex: =3
+
+        DataCard8 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height - 100
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label19 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =230
+                Size: =30
+                Text: ="Connecting to the right peoples"
+                Width: =560
+                X: =230
+                Y: =44
+                ZIndex: =1
+
+            Label21 As label:
+                Height: =340
+                Size: =25
+                Text: ="Get in touch with us today and take the first step towards unlocking your full potential."
+                Width: =780
+                X: =100
+                Y: =112
+                ZIndex: =2
+
+            Image13 As image:
+                Height: =356
+                Image: ='359175_0594ff7951174dbcaf3f84e2bb3163c4~mv2_1'
+                Width: =416
+                X: =910
+                Y: =44
+                ZIndex: =3
+
+        DataCard9 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =700
+            Width: =1366
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            Icon4 As icon.Map:
+                Icon: =Icon.Location
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Label23 As label:
+                Height: =140
+                Size: =30
+                Text: |-
+                    ="Location:
+                    Pullipalayam, Sankari, Salem,
+                    Tamilnadu, India -637304."
+                Width: =453
+                X: =166
+                Y: =24
+                ZIndex: =2
+
+            Icon5 As icon.Clock:
+                Height: =80
+                Icon: =Icon.Clock
+                Width: =126
+                X: =20
+                Y: =209
+                ZIndex: =3
+
+            Icon6 As icon.Mail:
+                Icon: =Icon.Mail
+                X: =51
+                Y: =357
+                ZIndex: =4
+
+            Icon8 As icon.PhoneHangUp:
+                Icon: =Icon.PhoneHangUp
+                X: =51
+                Y: =493
+                ZIndex: =5
+
+            Label23_1 As label:
+                Height: =140
+                Size: =30
+                Text: |-
+                    ="Open Hours:
+                    Monday - Saturday:
+                    09:00 AM - 06:00 PM"
+                Width: =513
+                X: =166
+                Y: =179
+                ZIndex: =6
+
+            Label23_2 As label:
+                Height: =140
+                Size: =30
+                Text: |-
+                    ="Email:
+                    info@aakam360.com"
+                Width: =453
+                X: =179
+                Y: =336
+                ZIndex: =7
+
+            Label23_3 As label:
+                Height: =200
+                Size: =30
+                Text: |-
+                    ="Call:
+                    +91 843 843 5777
+                    +91 843 843 5999"
+                Width: =453
+                X: =179
+                Y: =460
+                ZIndex: =8
+
+            TextInput1 As text:
+                Default: =
+                Height: =76
+                HintText: ="Name"
+                Size: =30
+                X: =657
+                Y: =40
+                ZIndex: =9
+
+            TextInput1_1 As text:
+                Default: =
+                Height: =76
+                HintText: ="Your Mail"
+                Size: =30
+                X: =1005
+                Y: =40
+                ZIndex: =10
+
+            TextInput1_2 As text:
+                Default: =
+                Height: =116
+                HintText: ="Subject"
+                Size: =30
+                Width: =668
+                X: =657
+                Y: =179
+                ZIndex: =11
+
+            TextInput1_3 As text:
+                Default: =
+                Height: =222
+                HintText: ="Message"
+                Size: =30
+                Width: =668
+                X: =657
+                Y: =357
+                ZIndex: =12
+
+            Button1 As button:
+                Height: =60
+                OnSelect: =Navigate(Submit,ScreenTransition.Fade)
+                Size: =30
+                Text: ="Send"
+                Width: =200
+                X: =852
+                Y: =616
+                ZIndex: =13
+
+    Label22 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =63
+        Size: =30
+        Text: ="Contact Us"
+        Width: =453
+        X: =546
+        Y: =25
+        ZIndex: =5
+
+    Arrow5 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =74
+        OnSelect: =Navigate(Aakam360_home,ScreenTransition.Fade)
+        Width: =76
+        X: =40
+        Y: =14
+        ZIndex: =12
+

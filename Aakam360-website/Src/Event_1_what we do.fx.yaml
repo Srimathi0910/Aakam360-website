@@ -1,0 +1,352 @@
+"'Event_1_what we do' As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar3 As rectangle:
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1 As label:
+        Align: =Align.Center
+        Height: =88
+        Text: =
+        Width: =Parent.Width
+        ZIndex: =2
+
+    Canvas3 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar3.Y + RectQuickActionBar3.Height
+        ZIndex: =3
+
+        DataCard2 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height - 100
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label13 As label:
+                Color: =RGBA(118, 0, 0, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =290
+                Size: =60
+                Text: ="Providing comprehensive environment for Innovation"
+                Width: =1085
+                X: =172
+                ZIndex: =1
+
+            Label14 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =375
+                Size: =30
+                Text: ="Empowering students by connecting institution and industries by providing incubation, internship for innovation"
+                Width: =972
+                X: =150
+                Y: =205
+                ZIndex: =2
+
+        DataCard6 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =580
+            Width: =1366
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            Label15 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =92
+                Size: =40
+                Text: ="Students Benefits"
+                Width: =647
+                X: =350
+                Y: =28
+                ZIndex: =1
+
+            Image14 As image:
+                Image: ='Students Benefits1'
+                X: =40
+                Y: =146
+                ZIndex: =2
+
+            Image14_1 As image:
+                Image: ='Students Benefits2'
+                X: =863
+                Y: =146
+                ZIndex: =3
+
+            Image14_2 As image:
+                Image: ='Students Benefits3'
+                X: =40
+                Y: =310
+                ZIndex: =4
+
+            Image14_3 As image:
+                Image: ='Students Benefits5'
+                X: =423
+                Y: =469
+                ZIndex: =5
+
+            Image14_4 As image:
+                Image: ='Students Benefits4'
+                X: =863
+                Y: =344
+                ZIndex: =6
+
+            Label16 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Industry Knowledge"
+                Width: =402
+                X: =158
+                Y: =98
+                ZIndex: =7
+
+            Label16_1 As label:
+                Height: =122
+                Size: =20
+                Text: ="We Enable students to acquire Industry knowledge"
+                Width: =402
+                X: =159
+                Y: =163
+                ZIndex: =8
+
+            Label16_2 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Live Experience"
+                Width: =402
+                X: =964
+                Y: =76
+                ZIndex: =9
+
+            Label16_3 As label:
+                Height: =122
+                Size: =20
+                Text: ="Incorporating Industrial standards to curriculum"
+                Width: =402
+                X: =964
+                Y: =141
+                ZIndex: =10
+
+            Label16_4 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Corporate Awareness"
+                Width: =402
+                X: =952
+                Y: =263
+                ZIndex: =11
+
+            Label16_5 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Training"
+                Width: =402
+                X: =140
+                Y: =263
+                ZIndex: =12
+
+            Label16_6 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Live Client Interactions"
+                Width: =402
+                X: =536
+                Y: =385
+                ZIndex: =13
+
+            Label16_7 As label:
+                Height: =122
+                Size: =20
+                Text: ="Enriching knowledge and building understanding about the corporate world for success"
+                Width: =402
+                X: =964
+                Y: =344
+                ZIndex: =14
+
+            Label16_8 As label:
+                Height: =122
+                Size: =20
+                Text: ="Disruptive skill based training models"
+                Width: =402
+                X: =149
+                Y: =336
+                ZIndex: =15
+
+            Label16_9 As label:
+                Height: =122
+                Size: =20
+                Text: ="Real-world experience to sharpen skills and build lasting professional relationships"
+                Width: =402
+                X: =556
+                Y: =458
+                ZIndex: =16
+
+        DataCard7 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =650
+            Width: =1366
+            X: =0
+            Y: =2
+            ZIndex: =3
+
+            Label11 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =125
+                Size: =30
+                Text: ="Corporate Benefits"
+                Width: =477
+                X: =435
+                ZIndex: =1
+
+            Image12 As image:
+                Image: ='Corporate Benefits1'
+                X: =46
+                Y: =138
+                ZIndex: =2
+
+            Image12_1 As image:
+                Image: ='Corporate Benefits5'
+                X: =435
+                Y: =520
+                ZIndex: =3
+
+            Image12_2 As image:
+                Image: ='Corporate Benefits4'
+                X: =706
+                Y: =344
+                ZIndex: =4
+
+            Image12_3 As image:
+                Image: ='Corporate Benefits2'
+                X: =700
+                Y: =138
+                ZIndex: =5
+
+            Image12_4 As image:
+                Image: ='Corporate Benefits3'
+                X: =46
+                Y: =344
+                ZIndex: =6
+
+            Label16_10 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Infrastructure"
+                Width: =402
+                X: =181
+                Y: =70
+                ZIndex: =7
+
+            Label16_11 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Talent Pools"
+                Width: =402
+                X: =859
+                Y: =294
+                ZIndex: =8
+
+            Label16_12 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="Dedicated Spaces"
+                Width: =402
+                X: =583
+                Y: =457
+                ZIndex: =9
+
+            Label16_13 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="100+ Research Scholars"
+                Width: =402
+                X: =197
+                Y: =271
+                ZIndex: =10
+
+            Label16_14 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =122
+                Size: =20
+                Text: ="30+ Labs"
+                Width: =402
+                X: =859
+                Y: =70
+                ZIndex: =11
+
+            Label16_15 As label:
+                Height: =122
+                Size: =20
+                Text: ="High Speed Wi-Fi & Fibre optic Internet facilities"
+                Width: =402
+                X: =197
+                Y: =137
+                ZIndex: =12
+
+            Label16_16 As label:
+                Height: =122
+                Size: =20
+                Text: ="250+ Workstations for incubations and project developments."
+                Width: =402
+                X: =583
+                Y: =528
+                ZIndex: =13
+
+            Label16_17 As label:
+                Height: =122
+                Size: =20
+                Text: ="2000+ Untapped student pool"
+                Width: =402
+                X: =859
+                Y: =350
+                ZIndex: =14
+
+            Label16_18 As label:
+                Height: =122
+                Size: =20
+                Text: ="Cutting-edge live labs for Industrial works"
+                Width: =402
+                X: =859
+                Y: =127
+                ZIndex: =15
+
+            Label16_19 As label:
+                Height: =122
+                Size: =20
+                Text: ="100+ experienced Research fellows for Project guidance"
+                Width: =402
+                X: =197
+                Y: =350
+                ZIndex: =16
+
+    Arrow1_2 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =77
+        OnSelect: =Navigate(Overall_event,ScreenTransition.Fade)
+        Width: =72
+        X: =37
+        ZIndex: =4
+

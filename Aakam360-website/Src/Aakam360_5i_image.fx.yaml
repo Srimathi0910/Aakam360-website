@@ -1,0 +1,43 @@
+Aakam360_5i_image As screen:
+    BackgroundImage: =
+    Fill: =RGBA(5, 102, 178, 1)
+
+    Label3 As label:
+        Text: =
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+    Arrow1 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =92
+        OnSelect: =Navigate(Aakam360_home,ScreenTransition.Fade)
+        Width: =112
+        X: =60
+        Y: =60
+        ZIndex: =2
+
+    Image3 As image:
+        Height: =540
+        Image: ='5i_1'
+        ImagePosition: =ImagePosition.Fill
+        Width: =1025
+        X: =202
+        Y: =152
+        ZIndex: =3
+
+    ButtonCanvas1_6 As Button:
+        BasePaletteColor: =RGBA(5, 102, 178, 1)
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =40
+        FontWeight: =FontWeight.Bold
+        Height: =79
+        OnSelect: =Navigate(Aakam360_5i_explain,ScreenTransition.Fade)
+        Text: ="Click Here to Know about Our 5i"
+        Width: =690
+        X: =358
+        Y: =60
+        ZIndex: =5
+

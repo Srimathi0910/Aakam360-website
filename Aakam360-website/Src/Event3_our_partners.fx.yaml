@@ -1,0 +1,206 @@
+"Event3_our_partners As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar6 As rectangle:
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName5 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =88
+        Size: =30
+        Text: ="Our Partners"
+        Width: =Parent.Width
+        Y: =310
+        ZIndex: =2
+
+    Canvas6 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =70
+        ZIndex: =3
+
+        DataCard11 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =580
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label27 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =242
+                Size: =40
+                Text: |-
+                    ="Want to be a global change-maker?
+                    Join our team."
+                Width: =665
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Label27_1 As label:
+                Height: =242
+                Size: =30
+                Text: ="We have established relationships with a wide range of industry partners, from small startups to large multinational corporations"
+                Width: =712
+                X: =40
+                Y: =268
+                ZIndex: =2
+
+            Video3 As videoPlayback:
+                AutoStart: =true
+                Height: =382
+                Loop: =true
+                Media: =partners
+                ShowControls: =false
+                Width: =383
+                X: =946
+                Y: =72
+                ZIndex: =3
+
+        DataCard12 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =580
+            Width: =1366
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            Image19 As image:
+                Height: =250
+                Image: =k7_1
+                Width: =250
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Image19_1 As image:
+                Height: =250
+                Image: =second
+                Width: =250
+                X: =578
+                Y: =52
+                ZIndex: =2
+
+            Image19_2 As image:
+                Height: =250
+                Image: =dreamdaa
+                Width: =250
+                X: =1089
+                Y: =40
+                ZIndex: =3
+
+            Image19_3 As image:
+                Height: =250
+                Image: =inn2_1
+                Width: =250
+                X: =40
+                Y: =290
+                ZIndex: =4
+
+            Image19_4 As image:
+                Height: =250
+                Image: =fintechgie
+                Width: =250
+                X: =619
+                Y: =290
+                ZIndex: =5
+
+            Image19_5 As image:
+                Height: =250
+                Image: =greefi
+                Width: =250
+                X: =1089
+                Y: =252
+                ZIndex: =6
+
+        DataCard18 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =580
+            Width: =1366
+            X: =0
+            Y: =2
+            ZIndex: =3
+
+            Image17 As image:
+                Height: =250
+                Image: =e2
+                Width: =250
+                X: =61
+                Y: =40
+                ZIndex: =1
+
+            Image17_1 As image:
+                Height: =250
+                Image: =pepul
+                Width: =250
+                X: =564
+                Y: =40
+                ZIndex: =2
+
+            Image17_2 As image:
+                Height: =250
+                Image: =geek
+                Width: =250
+                X: =1067
+                Y: =40
+                ZIndex: =3
+
+            Image17_3 As image:
+                Height: =250
+                Image: =satnovation
+                Width: =250
+                X: =80
+                Y: =266
+                ZIndex: =4
+
+            Image17_4 As image:
+                Height: =250
+                Image: =skillsda
+                Width: =250
+                X: =1067
+                Y: =266
+                ZIndex: =5
+
+            Image17_5 As image:
+                Height: =250
+                Image: =focus
+                Width: =250
+                X: =564
+                Y: =253
+                ZIndex: =6
+
+    Label26 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =48
+        Size: =30
+        Text: ="Our Partners"
+        Width: =432
+        X: =515
+        Y: =22
+        ZIndex: =4
+
+    Arrow1_4 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =68
+        OnSelect: =Navigate(Overall_event,ScreenTransition.Fade)
+        Width: =89
+        X: =57
+        Y: =20
+        ZIndex: =5
+

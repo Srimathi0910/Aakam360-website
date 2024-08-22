@@ -1,0 +1,90 @@
+Overall_event As screen:
+    Fill: =RGBA(5, 102, 178, 1)
+
+    Arrow1_1 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =92
+        OnSelect: =Navigate(Aakam360_home,ScreenTransition.Fade)
+        Width: =112
+        X: =60
+        Y: =60
+        ZIndex: =6
+
+    ButtonCanvas1_5 As Button:
+        BasePaletteColor: |-
+            =RGBA(5, 102, 178, 100
+            )
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =40
+        FontWeight: =FontWeight.Bold
+        Height: =93
+        OnSelect: =Navigate('Event_1_what we do',ScreenTransition.Fade)
+        Text: ="What we do"
+        Width: =348
+        X: =493
+        Y: =72
+        ZIndex: =7
+
+    ButtonCanvas1_7 As Button:
+        BasePaletteColor: =RGBA(5, 102, 178, 100)
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =40
+        FontWeight: =FontWeight.Bold
+        Height: =93
+        OnSelect: =Navigate('event2(our mentors)',ScreenTransition.Fade)
+        Text: ="Our Mentors"
+        Width: =348
+        X: =493
+        Y: =226
+        ZIndex: =8
+
+    ButtonCanvas1_8 As Button:
+        BasePaletteColor: |
+            =RGBA(5, 102, 178, 100)
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =40
+        FontWeight: =FontWeight.Bold
+        Height: =93
+        OnSelect: =Navigate(Event5_outcomes,ScreenTransition.Fade)
+        Text: ="Outcomes"
+        Width: =348
+        X: =493
+        Y: =658
+        ZIndex: =9
+
+    ButtonCanvas1_9 As Button:
+        BasePaletteColor: =RGBA(5, 102, 178, 100)
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =40
+        FontWeight: =FontWeight.Bold
+        Height: =93
+        OnSelect: =Navigate('Event4_our usp',ScreenTransition.Fade)
+        Text: ="Our USP"
+        Width: =348
+        X: =493
+        Y: =511
+        ZIndex: =10
+
+    ButtonCanvas1_10 As Button:
+        BasePaletteColor: =RGBA(5, 102, 178, 100)
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =40
+        FontWeight: =FontWeight.Bold
+        Height: =93
+        OnSelect: =Navigate(Event3_our_partners,ScreenTransition.Fade)
+        Text: ="Our Partners"
+        Width: =348
+        X: =493
+        Y: =381
+        ZIndex: =11
+

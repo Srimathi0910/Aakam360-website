@@ -1,0 +1,19 @@
+Aakm360_page As screen:
+
+    Image5 As image:
+        Height: =310
+        Image: ='aakam360_logo-removebg-preview (1)'
+        Width: =1122
+        X: =128
+        Y: =194
+        ZIndex: =1
+
+    Timer3 As timer:
+        AutoStart: =true
+        Duration: =3000
+        OnTimerEnd: =Navigate(Aakam360_home,ScreenTransition.Fade)
+        Visible: =false
+        X: =40
+        Y: =40
+        ZIndex: =2
+

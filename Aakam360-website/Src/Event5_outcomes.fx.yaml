@@ -1,0 +1,252 @@
+"Event5_outcomes As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar7 As rectangle:
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName6 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =88
+        Size: =30
+        Text: ="Outcomes"
+        Width: =Parent.Width
+        ZIndex: =2
+
+    Canvas7 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar7.Y + RectQuickActionBar7.Height
+        ZIndex: =3
+
+        DataCard20 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height - 100
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label28 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =192
+                Size: =30
+                Text: ="Transforming potential into real-world impact"
+                Width: =445
+                X: =102
+                Y: =2
+                ZIndex: =1
+
+            Label29 As label:
+                Height: =362
+                Size: =30
+                Text: ="Through Aakam 360 initiative, our students have gained valuable real-world experience and have established connections to industry partners."
+                Width: =774
+                X: =102
+                Y: =139
+                ZIndex: =2
+
+            Video2 As videoPlayback:
+                AutoStart: =true
+                Height: =400
+                Loop: =true
+                Media: =outcome
+                ShowControls: =false
+                Width: =400
+                X: =896
+                Y: =70
+                ZIndex: =3
+
+        DataCard21 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =580
+            Width: =1366
+            X: =0
+            Y: =1
+            ZIndex: =2
+
+            Image18 As image:
+                Height: =300
+                Image: =research
+                Width: =300
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Image18_1 As image:
+                Height: =300
+                Image: =coe
+                Width: =300
+                X: =522
+                Y: =39
+                ZIndex: =2
+
+            Image18_2 As image:
+                Height: =300
+                Image: ='off-shore'
+                Width: =300
+                X: =976
+                Y: =40
+                ZIndex: =3
+
+            Label30 As label:
+                Height: =102
+                Text: ="Collaborative development environments that focus on connecting developers and innovators to share resources and ideas."
+                Width: =299
+                X: =976
+                Y: =396
+                ZIndex: =4
+
+            Label30_1 As label:
+                Height: =105
+                Text: |-
+                    ="Group of professionals dedicated to providing the highest level of expertise and service in a particular field.
+                    "
+                Width: =300
+                X: =522
+                Y: =396
+                ZIndex: =5
+
+            Label30_2 As label:
+                Height: =93
+                Text: ="Focuses on analysing and understanding the business trends, strategies, and operations of corporations."
+                Width: =300
+                X: =40
+                Y: =396
+                ZIndex: =6
+
+            Label30_3 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =20
+                Text: ="Off-Share Dev Centres"
+                Width: =322
+                X: =996
+                Y: =356
+                ZIndex: =7
+
+            Label30_4 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =20
+                Text: ="Center Of Excellence"
+                Width: =315
+                X: =522
+                Y: =356
+                ZIndex: =8
+
+            Label30_5 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =20
+                Text: |-
+                    ="Research
+                    "
+                X: =100
+                Y: =356
+                ZIndex: =9
+
+        DataCard22 As dataCard.blankCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =580
+            Width: =1366
+            X: =0
+            Y: =2
+            ZIndex: =3
+
+            Image18_3 As image:
+                Height: =300
+                Image: =hubs
+                Width: =300
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            Image18_4 As image:
+                Height: =300
+                Image: ='i-and-s'
+                Width: =300
+                X: =1009
+                Y: =40
+                ZIndex: =2
+
+            Image18_5 As image:
+                Height: =300
+                Image: ='media-hub'
+                Width: =300
+                X: =520
+                Y: =40
+                ZIndex: =3
+
+            Label31 As label:
+                Height: =116
+                Text: ="Process of encouraging and supporting the development of innovative business ideas within the structure of an existing corporate entity."
+                Width: =304
+                X: =1009
+                Y: =397
+                ZIndex: =4
+
+            Label31_1 As label:
+                Height: =116
+                Text: ="Provide a centralized platform for managing and sharing digital media, such as videos, photos, and music, within a corporate environment."
+                Width: =314
+                X: =520
+                Y: =397
+                ZIndex: =5
+
+            Label31_2 As label:
+                Height: =80
+                Text: |-
+                    ="Focus on the development, marketing, and distribution of products, services, and solutions.
+                    "
+                Width: =271
+                X: =54
+                Y: =415
+                ZIndex: =6
+
+            Label31_3 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =20
+                Text: ="Incubation & Startups"
+                Width: =363
+                X: =1003
+                Y: =352
+                ZIndex: =7
+
+            Label31_4 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =30
+                Size: =20
+                Text: ="Media Hub"
+                Width: =190
+                X: =599
+                Y: =357
+                ZIndex: =8
+
+            Label31_5 As label:
+                FontWeight: =FontWeight.Bold
+                Size: =20
+                Text: ="Product Hubs"
+                Width: =207
+                X: =86
+                Y: =357
+                ZIndex: =9
+
+    Arrow1_6 As arrow.backArrow:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =68
+        OnSelect: =Navigate(Overall_event,ScreenTransition.Fade)
+        Width: =80
+        X: =57
+        Y: =20
+        ZIndex: =4
+

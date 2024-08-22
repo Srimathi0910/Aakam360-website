@@ -1,0 +1,65 @@
+Logo_Page As screen:
+
+    Image1 As image:
+        Height: =117
+        Image: ='Shanmugha_college_logo-removebg-preview'
+        Width: =490
+        X: =356
+        Y: =30
+        ZIndex: =1
+
+    Timer1 As timer:
+        AutoStart: =true
+        Duration: =3000
+        OnTimerEnd: =Navigate(Aakm360_page,ScreenTransition.Fade)
+        Visible: =false
+        X: =40
+        Y: =40
+        ZIndex: =2
+
+    Image8 As image:
+        Height: =192
+        Image: =ZKZg_1
+        Width: =265
+        X: =490
+        Y: =435
+        ZIndex: =4
+
+    Image6 As image:
+        Height: =192
+        Image: ='Shanmugha logo(SSCET)_1'
+        Width: =560
+        X: =22
+        Y: =176
+        ZIndex: =5
+
+    Image6_1 As image:
+        Image: ='Shanmugha logo(SSCET)(second_logo)'
+        X: =785
+        Y: =222
+        ZIndex: =6
+
+    Image6_2 As image:
+        Image: ='Shanmugha logo(SSCET)(first_logo)'
+        X: =626
+        Y: =222
+        ZIndex: =7
+
+    Image6_3 As image:
+        Image: ='Shanmugha logo(SSCET)(third_logo)'
+        X: =960
+        Y: =222
+        ZIndex: =8
+
+    Image6_4 As image:
+        Image: ='Shanmugha logo(SSCET)(fourth_logo)'
+        X: =1112
+        Y: =222
+        ZIndex: =9
+
+    Image6_5 As image:
+        Image: ='Shanmugha logo(SSCET)(fifth_logo)'
+        X: =1252
+        Y: =222
+        ZIndex: =10
+

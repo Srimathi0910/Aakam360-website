@@ -1,0 +1,18 @@
+First_page As screen:
+    Fill: =RGBA(0, 94, 146, 1)
+
+    Label1 As label:
+        Text: =
+        X: =40
+        Y: =40
+        ZIndex: =1
+
+    Timer2 As timer:
+        AutoStart: =true
+        Duration: =1000
+        OnTimerEnd: =Navigate(Logo_Page,ScreenTransition.Fade)
+        Visible: =false
+        X: =60
+        Y: =60
+        ZIndex: =2
+
