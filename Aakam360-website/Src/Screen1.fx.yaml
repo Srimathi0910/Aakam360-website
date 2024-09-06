@@ -1,0 +1,56 @@
+Screen1 As screen:
+
+    ButtonCanvas2 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =39
+        Text: ="Careers"
+        Width: =128
+        X: =168
+        Y: =52
+        ZIndex: =1
+
+    ButtonCanvas2_1 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =39
+        Text: ="Media"
+        Width: =128
+        X: =168
+        Y: =137
+        ZIndex: =2
+
+    ButtonCanvas2_2 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =39
+        Text: ="Clients"
+        Width: =128
+        X: =168
+        Y: =211
+        ZIndex: =3
+
+    ButtonCanvas2_3 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =39
+        Text: ="Technology"
+        Width: =128
+        X: =168
+        Y: =294
+        ZIndex: =4
+
+    ButtonCanvas2_4 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =39
+        Text: ="News lettes"
+        Width: =128
+        X: =168
+        Y: =370
+        ZIndex: =5
+
+    ButtonCanvas2_5 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =39
+        Text: ="Sectors"
+        Width: =128
+        X: =168
+        Y: =446
+        ZIndex: =6
+
