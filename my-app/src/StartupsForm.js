@@ -8,6 +8,7 @@ import OnboardingMainImage4 from "../src/img/StartupsEntrepreneur-Main.jpg";
 
 const StartupsForm = () => {
   const navigate = useNavigate(); // Initialize navigation
+  const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -30,6 +31,72 @@ const StartupsForm = () => {
     pitchDeck: null,
     termsAccepted: false,
   });
+  const validate = () => {
+    let tempErrors = {};
+  
+    if (!formData.firstName.trim()) tempErrors.firstName = "First Name is required.";
+    if (!formData.lastName.trim()) tempErrors.lastName = "Last Name is required.";
+  
+    if (!formData.email.trim()) {
+      tempErrors.email = "Email is required.";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      tempErrors.email = "Invalid email format.";
+    }
+  
+     // Mobile number validation
+   if (!formData.contact.trim()) {
+    tempErrors.contact = "Mobile Number is required";
+  } else if (!/^\d+$/.test(formData.contact)) {
+    tempErrors.contact = "Mobile Number must contain only digits";
+  } else if (formData.contact.length !== 10) {
+    tempErrors.contact = "Mobile Number must be exactly 10 digits";
+  } else if (/^[012345]/.test(formData.contact)) {
+    tempErrors.contact = "Mobile Number cannot start with 0, 1, 2, 3, 4, or 5";
+  }
+    
+  
+    if (!formData.designation.trim()) tempErrors.designation = "Designation is required.";
+    if (!formData.startupName.trim()) tempErrors.startupName = "Startup Name is required.";
+  
+    if (!formData.website.trim()) {
+      tempErrors.website = "Website is required.";
+    } else if (!/^(https?:\/\/)?([\w\d\-_]+)\.([a-z]{2,})(\/[\w\d\-_]*)*\/?$/.test(formData.website)) {
+      tempErrors.website = "Invalid website URL.";
+    }
+  
+    if (!formData.registrationNumber.trim()) tempErrors.registrationNumber = "Startup Registration Number is required.";
+  
+    if (!formData.establishmentYear.trim()) {
+      tempErrors.establishmentYear = "Year of Establishment is required.";
+    } else if (!/^\d{4}$/.test(formData.establishmentYear)) {
+      tempErrors.establishmentYear = "Invalid year format (YYYY).";
+    }
+  
+    if (!formData.startupStage) tempErrors.startupStage = "Please select Startup Stage.";
+    if (!formData.industrySector.trim()) tempErrors.industrySector = "Industry Sector is required.";
+    if (!formData.location.trim()) tempErrors.location = "Location is required.";
+    if (!formData.district.trim()) tempErrors.district = "District is required.";
+    if (!formData.state.trim()) tempErrors.state = "State is required.";
+  
+    if (!formData.fundingStatus) tempErrors.fundingStatus = "Please select Funding Status.";
+    if (!formData.collaboration.trim()) tempErrors.collaboration = "Collaboration details are required.";
+    if (!formData.support.trim()) tempErrors.support = "Expected Support from Aakam is required.";
+  
+    if (!formData.pitchDeck) tempErrors.pitchDeck = "Pitch Deck is required.";
+    if (!formData.termsAccepted) tempErrors.termsAccepted = "You must agree to the terms.";
+    if (formData.pitchDeck) {
+      const allowedFormats = ["application/pdf", 
+                              "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
+                              "application/msword"];
+      if (!allowedFormats.includes(formData.pitchDeck.type)) {
+        alert("Invalid file format. Please upload a PDF or DOCX file.");
+        return;
+      }
+    }
+  
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0; // Return true if no errors
+  };
 
   const handleChange = (e) => {
     if (e.target.type === "file") {
@@ -43,55 +110,76 @@ const StartupsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.termsAccepted) {
-      alert("Please agree to the terms and conditions.");
-      return;
-    }
-
-    const formDataObject = new FormData();
-    for (const key in formData) {
-      formDataObject.append(key, formData[key]);
+  
+    if (!validate()) { // If validation fails, stop execution
+        return;
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/startup-form", formDataObject, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+        const formDataToSend = new FormData();
 
-      // alert(response.data.message);
+        Object.keys(formData).forEach((key) => {
+            if (key === "pitchDeck" && formData[key]) {
+                formDataToSend.append(key, formData[key]); // Append file
+            } else {
+                formDataToSend.append(key, formData[key]);
+            }
+        });
 
-      // Reset form state after successful submission
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        contact: "",
-        designation: "",
-        startupName: "",
-        website: "",
-        registrationNumber: "",
-        establishmentYear: "",
-        startupStage: "",
-        industrySector: "",
-        location: "",
-        district: "",
-        state: "",
-        fundingStatus: "",
-        collaboration: "",
-        support: "",
-        pitchDeck: null,
-        termsAccepted: false,
-      });
+        // Send email
+        const emailResponse = await axios.post(
+            "http://localhost:5000/sendmail-startup-form",
+            formDataToSend,
+            {
+                headers: { "Content-Type": "multipart/form-data" },
+            }
+        );
+        alert(emailResponse.data.message);
 
-      // Navigate to /submitted page
-      navigate("/submitted");
+        // Store form data
+        const formResponse = await axios.post(
+            "http://localhost:5000/api/startup-form",
+            formDataToSend,
+            {
+                headers: { "Content-Type": "multipart/form-data" },
+            }
+        );
 
+        alert("Form submitted successfully!");
+
+        // Reset form data
+        setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            contact: "",
+            designation: "",
+            startupName: "",
+            website: "",
+            registrationNumber: "",
+            establishmentYear: "",
+            startupStage: "",
+            industrySector: "",
+            location: "",
+            district: "",
+            state: "",
+            fundingStatus: "",
+            collaboration: "",
+            support: "",
+            pitchDeck: null,
+            termsAccepted: false,
+        });
+
+        setErrors({}); // Clear errors
+        navigate("/submitted");
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Failed to submit form.");
+        console.error("Error submitting form:", error);
+        alert("Failed to submit form.");
     }
-  };
+};
+
+  
+  
   return (
     <section className='onboarding-form-container'>
       {/* Header Section */}
@@ -109,76 +197,63 @@ const StartupsForm = () => {
       {/* Form Section */}
       <div className="onboardingWrapper">
         
-      <div className="onboardingform" style={{ height: "1300px" }}>
+      <div className="onboardingform" style={{ height: "1600px" ,minHeight: "400px"}}>
 
           <div className='borderLine'></div>
           <form onSubmit={handleSubmit}>
       <h1>Connect Your Startup Idea With Aakam</h1>
       <div className="formGrid">
+        {[
+          { label: "First Name", name: "firstName", type: "text" },
+          { label: "Last Name", name: "lastName", type: "text" },
+          { label: "Email", name: "email", type: "email" },
+          { label: "Contact Number", name: "contact", type: "tel" },
+          { label: "Designation", name: "designation", type: "text" },
+          { label: "Startup Name", name: "startupName", type: "text" },
+          { label: "Website", name: "website", type: "url" },
+          { label: "Startup Registration Number", name: "registrationNumber", type: "text" },
+          { label: "Year of Establishment", name: "establishmentYear", type: "text" },
+          { label: "Industry Sector", name: "industrySector", type: "text" },
+          { label: "Location", name: "location", type: "text" },
+          { label: "District", name: "district", type: "text" },
+          { label: "State", name: "state", type: "text" },
+          
+          
+        ].map(({ label, name, type }) => (
+          <div key={name} className="inputBox">
+            <input type={type} name={name} value={formData[name]} onChange={handleChange} required />
+            <span>{label}</span>
+            {errors[name] && <p style={{ color: "red" }}>{errors[name]}</p>}
+          </div>
+        ))}
         <div className="inputBox">
-          <input type="text" name="firstName" required onChange={handleChange} />
-          <span>First Name:</span>
+          <textarea type="text" name="collaboration" onChange={handleChange} required />
+          <span>How do you want to collaborate?</span>
+          {errors.collaboration && <p style={{ color: "red" }}>{errors.collaboration}</p>}
         </div>
         <div className="inputBox">
-          <input type="text" name="lastName" required onChange={handleChange} />
-          <span>Last Name:</span>
+          <textarea type="text" name="support" onChange={handleChange} required />
+          <span>Expected Support from Aakam</span>
+          {errors.support && <p style={{ color: "red" }}>{errors.support}</p>}
         </div>
+        
+        
+
         <div className="inputBox">
-          <input type="email" name="email" required onChange={handleChange} />
-          <span>Email</span>
-        </div>
-        <div className="inputBox">
-          <input type="tel" name="contact" required onChange={handleChange} />
-          <span>Contact Number</span>
-        </div>
-        <div className="inputBox">
-          <input type="text" name="designation" required onChange={handleChange} />
-          <span>Designation</span>
-        </div>
-        <div className="inputBox">
-          <input type="text" name="startupName" required onChange={handleChange} />
-          <span>Startup Name</span>
-        </div>
-        <div className="inputBox">
-          <input type="url" name="website" required onChange={handleChange} />
-          <span>Website</span>
-        </div>
-        <div className="inputBox">
-          <input type="text" name="registrationNumber" required onChange={handleChange} />
-          <span>Startup Registration Number</span>
-        </div>
-        <div className="inputBox">
-          <input type="text" name="establishmentYear" required onChange={handleChange} />
-          <span>Year of Establishment</span>
-        </div>
-        <div className="inputBox">
-          <select name="startupStage" required onChange={handleChange}>
+          <select name="startupStage" value={formData.startupStage} onChange={handleChange} required>
             <option value="">Select</option>
             <option value="Ideation">Ideation</option>
             <option value="MVP">MVP</option>
             <option value="Growth">Growth</option>
             <option value="Scaling">Scaling</option>
           </select>
-          <span style={{marginTop:"-15px"}}>Startup Stage</span>
+          <span>Startup Stage</span>
+          {errors.startupStage && <p style={{ color: "red" }}>{errors.startupStage}</p>}
+
         </div>
+
         <div className="inputBox">
-          <input type="text" name="industrySector" required onChange={handleChange} />
-          <span>Industry Sector</span>
-        </div>
-        <div className="inputBox">
-          <input type="text" name="location" required onChange={handleChange} />
-          <span>Location:</span>
-        </div>
-        <div className="inputBox">
-          <input type="text" name="district" required onChange={handleChange} />
-          <span>District</span>
-        </div>
-        <div className="inputBox">
-          <input type="text" name="state" required onChange={handleChange} />
-          <span>State</span>
-        </div>
-        <div className="inputBox">
-          <select name="fundingStatus" required onChange={handleChange}>
+          <select name="fundingStatus" value={formData.fundingStatus} onChange={handleChange} required>
             <option value="">Select</option>
             <option value="Bootstrapped">Bootstrapped</option>
             <option value="Seed">Seed</option>
@@ -186,25 +261,25 @@ const StartupsForm = () => {
             <option value="Series B">Series B</option>
             <option value="Series C">Series C</option>
           </select>
-          <span style={{marginTop:"-15px"}}>Funding Status</span>
+          <span>Funding Status</span>
+          {errors.fundingStatus && (
+  <p style={{ color: "red" }}>{errors.fundingStatus}</p>
+)}
         </div>
+
         <div className="inputBox">
-          <input type="text" name="collaboration" required onChange={handleChange} />
-          <span>How do you want to collaborate?</span>
+          <input type="file" name="pitchDeck" accept=".pdf,.doc,.docx" onChange={handleChange} required />
+          <span>Upload Pitch Deck</span>
+          {errors.pitchDeck && <p style={{ color: "red" }}>{errors.pitchDeck}</p>}
         </div>
-        <div className="inputBox">
-          <input type="text" name="support" required onChange={handleChange} />
-          <span>Expected Support from Aakam</span>
-        </div>
-        <div className="inputBox">
-          <input type="file" name="pitchDeck" required onChange={handleChange} />
-          <span style={{marginTop:"-15px"}}>Upload Pitch Deck</span>
-        </div>
+
         <div className="checkBox">
-          <input type="checkbox" name="termsAccepted" onChange={handleChange} />
+          <input type="checkbox" name="termsAccepted" checked={formData.termsAccepted} onChange={handleChange} />
           <span>I agree to the terms and conditions</span>
+          {errors.termsAccepted && <p style={{ color: "red" }}>{errors.termsAccepted}</p>}
         </div>
       </div>
+
       <div className="inputBox">
         <input type="submit" value="Apply" />
       </div>

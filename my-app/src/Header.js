@@ -47,7 +47,7 @@ const Header = () => {
         </button>
 
 
-      <nav  className={`main-menu ${menuOpen ? "" : "open"}`}>
+      <nav  className={`main-menu ${menuOpen ? "open" : ""}`}>
         <ul className="menu">
           <li><Link to="/">HOME</Link></li>
           <li><Link to="/our-5i-explain">OUR 5I</Link></li>

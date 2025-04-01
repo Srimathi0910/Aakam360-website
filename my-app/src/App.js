@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './ThemeContext';
+import Lottie from "lottie-react"; 
+import { useState, useEffect } from "react";
+import loadingAnimation from "../src/img/Loading.json"; // Correct path
 import './styles.css';
 import Header from './Header';
 import Allone from './Allone';
@@ -56,6 +59,8 @@ import Services4 from './Services4';
 import Services5 from './Services5';
 import JobApplyForm from './JobApplyForm';
 import Message from './Message';
+import GetAQuote from './GetAQuote';
+
 
 
 // import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
@@ -64,8 +69,21 @@ import Message from './Message';
 
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate content loading time
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust time as needed
+  }, []);
   return (
     <ThemeProvider>
+      {loading ? (
+        <div className="loader-container">
+          <Lottie animationData={loadingAnimation} loop={true} className="lottie-animation" />
+        </div>
+      ) : (
       <Router>
         <ScrollToTop />
         <Header />
@@ -122,6 +140,7 @@ const App = () => {
             <Route path="/Research-Development"element={<Services5/>}/>
             <Route path="/job-apply-form"element={<JobApplyForm/>}/>
             <Route path="/submitted"element={<Message/>}/>
+            <Route path="/getaquote"element={<GetAQuote/>}/>
             
 
 
@@ -130,7 +149,9 @@ const App = () => {
         </div>
         <Footer />
     </Router>
+      )}
     </ThemeProvider>
+    
   );
 };
 

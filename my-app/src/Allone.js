@@ -14,9 +14,6 @@ import Initiatives from './Initiatives.js';
 import Onboarding from './Onboarding.js';
 import Information from './Information.js';
 import WhyChooseUs from'./WhyChooseUs';
-import Message from './Message.js';
-
-
 
 
 const Allone = () => {
@@ -33,7 +30,9 @@ const Allone = () => {
       <Onboarding />
       <WhyChooseUs/>
       <Chatbot />
-      <Message/>
+      
+      
+
 
       
     </div>

@@ -146,7 +146,7 @@ const Career = () => {
       <div className="hero-section1">
         <img src={careers} alt="careers" className="hero-image" />
         <div className="hero-text">
-          <h1>Career</h1>
+          <h1>CAREER</h1>
           <h3>Looking to grow your career in a dynamic, innovative environment? Aakam360 offers exciting opportunities in the fields of technology, management, and research.</h3>
         </div>
       </div>
@@ -180,6 +180,9 @@ const Career = () => {
             </div>
           ))}
         </div>
+        <Link to="/getaquote" className="cta-btn" style={{textDecoration:"none",color:"white",fontWeight:"bold"}}>
+                        Get A Quote
+                      </Link>
       </section>
     </div>
   );

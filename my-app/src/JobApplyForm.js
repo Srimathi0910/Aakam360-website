@@ -1,63 +1,109 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import './styles.css'; 
+import "./styles.css";
 import ApplyJobImage from "../src/img/Apply-Job-Image.jpg";
 
+const JobApplyForm = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    mobileNumber: "",
+    role: "",
+    resume: null,
+    agreedToTerms: false,
+  });
 
-  const JobApplyForm = () => {
-    const [formData, setFormData] = useState({
-      fullName: "",
-      email: "",
-      mobileNumber: "",
-      role: "",
-      resume: null,
-      agreedToTerms: false,
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+
+  const validate = () => {
+    let tempErrors = {};
+
+    if (!formData.fullName.trim()) tempErrors.fullName = "Full Name is required.";
+    if (!formData.role.trim()) tempErrors.role = "Role is required.";
+
+    if (!formData.email.trim()) {
+      tempErrors.email = "Email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      tempErrors.email = "Invalid email format.";
+    }
+
+    if (!formData.mobileNumber.trim()) {
+      tempErrors.mobileNumber = "Mobile Number is required.";
+    } else if (!/^\d{10}$/.test(formData.mobileNumber)) {
+      tempErrors.mobileNumber = "Mobile Number must be exactly 10 digits.";
+    }
+
+    if (!formData.resume) tempErrors.resume = "Resume is required.";
+    if (!formData.agreedToTerms) tempErrors.agreedToTerms = "You must agree to the terms.";
+
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
     });
-    const navigate = useNavigate();
-  
-    // Handle input change
-    const handleChange = (e) => {
-      const { name, value, type, checked } = e.target;
-      setFormData({
-        ...formData,
-        [name]: type === "checkbox" ? checked : value,
-      });
-    };
-  
-    // Handle file change
-    const handleFileChange = (e) => {
-      setFormData({ ...formData, resume: e.target.files[0] });
-    };
-  
-    // Handle form submission
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const data = new FormData();
-      data.append("fullName", formData.fullName);
-      data.append("email", formData.email);
-      data.append("mobileNumber", formData.mobileNumber);
-      data.append("role", formData.role);
-      data.append("resume", formData.resume);
-      data.append("agreedToTerms", formData.agreedToTerms);
-  
-      try {
-        const response = await fetch("http://localhost:5000/api/job-applications", {
-          method: "POST",
-          body: data,
-        });
-  
-        if (response.ok) {
-          navigate("/submitted"); // ✅ Redirect to SuccessPage after submission
-        } else {
-          alert("Error submitting job application.");
-        }
-      } catch (error) {
-        console.error("Error:", error);
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    const allowedFormats = [
+      "application/pdf",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "application/msword",
+    ];
+
+    if (file && !allowedFormats.includes(file.type)) {
+      setErrors({ ...errors, resume: "Invalid file format. Upload a PDF or DOCX file." });
+      return;
+    }
+
+    setFormData({ ...formData, resume: file });
+    setErrors({ ...errors, resume: "" });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    const data = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (key === "resume" && formData.resume) {
+        data.append(key, formData.resume);
+      } else {
+        data.append(key, formData[key]);
       }
-    };
-  
+    });
+
+    try {
+      // Send Email
+      const emailResponse = await axios.post(
+        "http://localhost:5000/api/sendmail-job-applications",
+        data,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log("Email Response:", emailResponse.data);
+
+      // Save Application to Database
+      const formResponse = await axios.post(
+        "http://localhost:5000/api/job-applications",
+        data,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log("Form Response:", formResponse.data);
+
+      alert("Application submitted successfully!");
+      navigate("/submitted");
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      alert("Error submitting job application. Please try again.");
+    }
+  };
 
   return (
     <section className='onboarding-form-container'>
@@ -87,14 +133,17 @@ import ApplyJobImage from "../src/img/Apply-Job-Image.jpg";
         <div className="inputBox">
           <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
           <span>Full Name</span>
+          {errors.fullName && <p style={{ color: "red" }}>{errors.fullName}</p>}
         </div>
         <div className="inputBox">
           <input type="email" name="email" value={formData.email} onChange={handleChange} required />
           <span>Email</span>
+          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
         </div>
         <div className="inputBox">
           <input type="tel" name="mobileNumber" value={formData.mobileNumber} onChange={handleChange} required />
           <span>Mobile Number</span>
+          {errors.mobileNumber && <p style={{ color: "red" }}>{errors.mobileNumber}</p>}
         </div>
         <div className="inputBox">
           <select className="Designation" name="role" value={formData.role} onChange={handleChange} required>
@@ -105,14 +154,17 @@ import ApplyJobImage from "../src/img/Apply-Job-Image.jpg";
             <option value="Software Engineer">Software Engineer</option>
           </select>
           <span style={{marginTop:"-15px"}}>Role</span>
+          {errors.role && <p style={{ color: "red" }}>{errors.role}</p>}
         </div>
         <div className="inputBox" id="uploads">
-          <input type="file" name="resume" onChange={handleFileChange} required />
+          <input type="file" name="resume" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
           <span style={{marginTop:"-15px"}}>Upload Resume</span>
+          {errors.resume && <p style={{ color: "red" }}>{errors.resume}</p>}
         </div>
         <div className="checkBox">
           <input type="checkbox" name="agreedToTerms" checked={formData.agreedToTerms} onChange={handleChange} />
           <span>I agree to the terms and conditions</span>
+          {errors.agreedToTerms && <p style={{ color: "red" }}>{errors.agreedToTerms}</p>}
         </div>
       </div>
       <div className="inputBox">

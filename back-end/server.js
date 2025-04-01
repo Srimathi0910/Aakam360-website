@@ -252,6 +252,50 @@ app.post("/apply", upload.single("resume"), async (req, res) => {
     res.status(500).json({ error: "Error saving application" });
   }
 });
+const getAQuoteSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  mobileNumber: String,
+  country: String,
+  state: String,
+  city: String,
+  purposeofEnquiry: String,
+  message: String,
+  requirements: String, // Store filename
+  termsAccepted: Boolean,
+});
+const GetAQuoteForms = mongoose.model("GetAQuoteform", getAQuoteSchema);
+
+
+
+
+
+
+// Serve uploaded files statically
+app.use("/uploads", express.static("uploads"));
+
+// API Route to Handle Form Submission
+app.post("/api/get-a-quote", upload.single("requirements"), async (req, res) => {
+  try {
+    const newForm = new GetAQuoteForms({
+      name: req.body.name,
+      email: req.body.email,
+      mobileNumber: req.body.mobileNumber,
+      country: req.body.country,
+      state: req.body.state,
+      city: req.body.city,
+      purposeofEnquiry: req.body.purposeofEnquiry,
+      message: req.body.message,
+      requirements: req.file ? req.file.filename : null, // Save filename if file exists
+      termsAccepted: req.body.termsAccepted === "true", // Convert string to boolean
+    });
+    await newForm.save();
+    res.status(201).json({ message: "Form submitted successfully!" });
+  } catch (error) {
+    console.error("Error saving form: ", error);
+    res.status(500).json({ error: "Server error, please try again later." });
+  }
+});
 
 // Start Server
 const PORT = process.env.PORT || 5000;

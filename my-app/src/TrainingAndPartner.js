@@ -22,6 +22,46 @@ const TrainingAndPartner = () => {
     trainingDetails: "",
     termsAccepted: false,
   });
+  const [errors, setErrors] = useState({});
+  const validateForm = () => {
+    let newErrors = {};
+
+    // Required fields validation
+    Object.keys(formData).forEach((key) => {
+      if (key !== "termsAccepted" && !formData[key].trim()) {
+        newErrors[key] = `${key.replace(/([A-Z])/g, " $1")} is required`;
+      }
+    });
+
+    // Email validation
+    if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    // Mobile number validation
+   if (!formData.contact.trim()) {
+         newErrors.contact = "Mobile Number is required";
+       } else if (!/^\d+$/.test(formData.contact)) {
+         newErrors.contact = "Mobile Number must contain only digits";
+       } else if (formData.contact.length !== 10) {
+         newErrors.contact = "Mobile Number must be exactly 10 digits";
+       } else if (/^[012345]/.test(formData.contact)) {
+         newErrors.contact = "Mobile Number cannot start with 0, 1, 2, 3, 4, or 5";
+       }
+
+    // Portfolio link validation (optional, but if provided, should be a valid URL)
+    if (formData.portfolioLink && !/^https?:\/\/\S+$/.test(formData.portfolioLink)) {
+      newErrors.portfolioLink = "Enter a valid URL";
+    }
+
+    // Terms acceptance validation
+    if (!formData.termsAccepted) {
+      newErrors.termsAccepted = "You must agree to the terms and conditions";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
    const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -31,14 +71,15 @@ const TrainingAndPartner = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.termsAccepted) {
-      alert("You must agree to the terms and conditions.");
-      return;
-    }
+    
+    if (!validateForm()) return; // Prevent submission if validation fails
+    
     try {
+      const response = await axios.post('http://localhost:5000/sendmail-training-partner', formData);
+            alert(response.data.message);
       await axios.post("http://localhost:5000/api/training-partner", formData);
       navigate("/submitted"); 
       setFormData({
@@ -56,11 +97,13 @@ const TrainingAndPartner = () => {
         trainingDetails: "",
         termsAccepted: false,
       });
+      setErrors({});
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Error submitting form. Please try again.");
     }
   };
+  
   return (
     <section className='onboarding-form-container'>
       {/* Header Section */}
@@ -78,7 +121,7 @@ const TrainingAndPartner = () => {
       {/* Form Section */}
       <div className="onboardingWrapper">
         
-      <div className="onboardingform"  style={{ height: "1000px" }}>
+      <div className="onboardingform"style={{ height: "1100px" , minHeight: "400px"}}>
 
           <div className='borderLine'></div>
           <form onSubmit={handleSubmit}>
@@ -105,6 +148,7 @@ const TrainingAndPartner = () => {
               required
             />
             <span>{field.label}</span>
+            {errors[field.name] && <p style={{ color: "red" }}>{errors[field.name]}</p>}
           </div>
         ))}
 
@@ -116,7 +160,8 @@ const TrainingAndPartner = () => {
             <option value="Freelancer">Freelancer</option>
             <option value="Certified Trainer">Certified Trainer</option>
           </select>
-          <span style={{marginTop:"-15px"}}>Designation</span>
+          <span style={{ marginTop: "-15px" }}>Designation</span>
+          {errors.designation && <p style={{ color: "red" }}>{errors.designation}</p>}
         </div>
 
         {/* Training Details Textarea */}
@@ -128,6 +173,7 @@ const TrainingAndPartner = () => {
             required
           ></textarea>
           <span>About Training Details:</span>
+          {errors.trainingDetails && <p style={{ color: "red" }}>{errors.trainingDetails}</p>}
         </div>
 
         {/* Terms and Conditions Checkbox */}
@@ -139,6 +185,7 @@ const TrainingAndPartner = () => {
             onChange={handleChange}
           />
           <span>I agree to the terms and conditions</span>
+          {errors.termsAccepted && <p style={{ color: "red" }}>{errors.termsAccepted}</p>}
         </div>
       </div>
 

@@ -10,6 +10,7 @@ import Internship from '../src/img/our-5i-explain-internship.jpg';
 const  Our_5i_explain = () => {
   return (
     <div className='our_5i_main_container'>
+        <h1 className='heading-5i' style={{textAlign:"center"}}>OUR 5I</h1>
         <div>
             <div className='our_5i_container'>
                 <div>
