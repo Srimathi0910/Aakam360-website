@@ -117,7 +117,7 @@ const Institution_join = () => {
       </div>
 
       <div className="onboardingWrapper">
-        <div className="onboardingform" style={{ height: "1000px" , minHeight: "400px"}}>
+        <div className="onboardingform" >
           <div className='borderLine'></div>
           <form onSubmit={handleSubmit}>
             <h1>Connect Your Institution With Aakam</h1>

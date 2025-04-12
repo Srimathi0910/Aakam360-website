@@ -19,6 +19,7 @@ import eventimg12 from '../src/img/Events/event12.jpg';
 import eventimg13 from '../src/img/Events/event13.jpg';
 import eventimg14 from '../src/img/Events/event14.jpg';
 import eventimg15 from '../src/img/Events/event15.jpg';
+import Events2 from './Events2';
 
 const posters = [
   eventimgmain1, eventimgmain2, eventimgmain3, eventimgmain4
@@ -55,14 +56,12 @@ const Events = () => {
 
   return (
     <div className="events-page">
-      {/* <h1>Upcoming Events</h1>
-      <div className="carousel-container">
-        <button className="arrow-button" onClick={handlePrev}>⬅</button>
-        <img src={posters[currentPoster]} alt={`Poster ${currentPoster + 1}`} className="carousel-poster" />
-        <button className="arrow-button" onClick={handleNext}>➡</button>
-      </div> */}
+      <h1>Upcoming Events</h1>
+      <Events2 />
+      
       
       {/* Events Section */}
+      
       <h1 style={{padding:"30px"}}>Our 15 Events</h1>
       <div className="event-grid">
         {events.map((event, index) => (

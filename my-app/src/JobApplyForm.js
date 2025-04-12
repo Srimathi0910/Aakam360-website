@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
+import{ useRef } from "react";
+
 import ApplyJobImage from "../src/img/Apply-Job-Image.jpg";
 
 const JobApplyForm = () => {
@@ -13,6 +15,8 @@ const JobApplyForm = () => {
     resume: null,
     agreedToTerms: false,
   });
+  const fileInputRef = useRef(null);
+
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -66,6 +70,25 @@ const JobApplyForm = () => {
     setFormData({ ...formData, resume: file });
     setErrors({ ...errors, resume: "" });
   };
+  const handleFileChange1 = (e) => {
+    const file = e.target.files[0];
+    const maxSize = 500 * 1024; // 500 KB in bytes
+  
+    if (file && file.size > maxSize) {
+      setErrors(prev => ({ ...prev, resume: "File size should be less than 500 KB" }));
+      setFormData(prev => ({ ...prev, resume: null }));
+  
+      // Clear the file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null;
+      }
+    } else {
+      setErrors(prev => ({ ...prev, resume: "" }));
+      setFormData(prev => ({ ...prev, resume: file }));
+    }
+  };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,7 +148,7 @@ const JobApplyForm = () => {
       {/* Form Section */}
       <div className="onboardingWrapper">
         
-          <div className="onboardingform" style={{ height: "850px" }}>
+          <div className="onboardingform" >
           <div className='borderLine'></div>
           <form onSubmit={handleSubmit}>
       <h1>Shape Your Future with Aakam360</h1>
@@ -157,10 +180,19 @@ const JobApplyForm = () => {
           {errors.role && <p style={{ color: "red" }}>{errors.role}</p>}
         </div>
         <div className="inputBox" id="uploads">
-          <input type="file" name="resume" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
-          <span style={{marginTop:"-15px"}}>Upload Resume</span>
-          {errors.resume && <p style={{ color: "red" }}>{errors.resume}</p>}
-        </div>
+  <input
+    type="file"
+    name="resume"
+    accept=".pdf,.doc,.docx"
+    onChange={handleFileChange1}
+    ref={fileInputRef}
+    required
+  />
+  <span style={{ marginTop: "-15px" }}>Upload Resume</span>
+  {errors.resume && <p style={{ color: "red" }}>{errors.resume}</p>}
+</div>
+
+
         <div className="checkBox">
           <input type="checkbox" name="agreedToTerms" checked={formData.agreedToTerms} onChange={handleChange} />
           <span>I agree to the terms and conditions</span>

@@ -5,6 +5,7 @@ import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "./styles.css";
 import OnboardingMainImage3 from "../src/img/Training-Partner-Main.jpg";
+import{ useRef } from "react";
 
 const GetAQuote = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +32,25 @@ const GetAQuote = () => {
       [name]: type === "checkbox" ? checked : files ? files[0] : value,
     }));
   };
+  const handleFileChange1 = (e) => {
+    const file = e.target.files[0];
+    const maxSize = 500 * 1024; // 500 KB
+  
+    if (file && file.size > maxSize) {
+      setErrors((prev) => ({ ...prev, requirements: "File size should be less than 500 KB" }));
+      setFormData((prev) => ({ ...prev, requirements: null }));
+  
+      // Clear file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null;
+      }
+    } else {
+      // ✅ Valid file, clear error and update state
+      setErrors((prev) => ({ ...prev, requirements: null }));
+      setFormData((prev) => ({ ...prev, requirements: file }));
+    }
+  };
+  
 
   // Validate Form
   const validateForm = () => {
@@ -74,6 +94,8 @@ const GetAQuote = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+  const fileInputRef = useRef(); // <-- define this ref for the file input
+
 
   // Handle Form Submit
   const handleSubmit = async (e) => {
@@ -144,8 +166,8 @@ const GetAQuote = () => {
       </div>
 
       <div className="onboardingWrapper">
-        <div className="onboardingform" style={{ height: "1000px" , minHeight: "300px"}}>
-          <div className="borderLine"></div>
+        <div className="onboardingform">
+          <div className="borderLine" ></div>
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
               <div style={{ width: "10%", textAlign: "center" }}>
@@ -180,14 +202,24 @@ const GetAQuote = () => {
               </div>
 
               <div className="inputBox">
-                <input type="file" name="requirements" onChange={handleChange} accept=".pdf,.doc,.docx" required />
-                <span>Requirements</span>
-              </div>
+  <input
+    type="file"
+    name="requirements"
+    accept=".pdf,.doc,.docx"
+    onChange={handleFileChange1}
+    ref={fileInputRef}
+    required
+  />
+  <span>Requirements</span>
+  {errors.requirements && <p style={{ color: "red" }}>{errors.requirements}</p>}
+</div>
+
             </div>
 
             <div className="checkBox">
               <input type="checkbox" name="termsAccepted" checked={formData.termsAccepted} onChange={handleChange} />
               <span>I agree to the terms and conditions</span>
+              {errors.termsAccepted && <p style={{ color: "red" }}>{errors.termsAccepted}</p>}
             </div>
 
             <div className="inputBox">

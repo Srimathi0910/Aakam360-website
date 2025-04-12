@@ -16,6 +16,8 @@ import Information from './Information.js';
 import WhyChooseUs from'./WhyChooseUs';
 
 
+
+
 const Allone = () => {
   return (
     <div> 
@@ -30,6 +32,7 @@ const Allone = () => {
       <Onboarding />
       <WhyChooseUs/>
       <Chatbot />
+    
       
       
 

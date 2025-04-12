@@ -101,7 +101,7 @@ const Contact = () => {
               <FontAwesomeIcon icon={faLocationDot} className="customIcon" />
               <div>
                 <h4>Location:</h4>
-                <p>Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304.</p>
+                <p> Block B, Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304.</p>
               </div>
             </li>
             <br />

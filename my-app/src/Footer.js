@@ -50,7 +50,7 @@ const Footer = () => {
         {/* Section 3: Contact */}
         <div className="footer-section">
           <h3>Contact</h3>
-          <p>Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304</p>
+          <p> Block B, Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304</p>
           <p>Phone: +91 843 843 5777</p>
           <p>Phone: +91 7373 672 999</p>
           <p>Email: <a href="mailto:info@aakam360.com">info@aakam360.com</a></p>

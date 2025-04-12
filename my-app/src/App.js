@@ -60,6 +60,7 @@ import Services5 from './Services5';
 import JobApplyForm from './JobApplyForm';
 import Message from './Message';
 import GetAQuote from './GetAQuote';
+import Infrastructure from'./Infrastructure';
 
 
 
@@ -141,6 +142,9 @@ const App = () => {
             <Route path="/job-apply-form"element={<JobApplyForm/>}/>
             <Route path="/submitted"element={<Message/>}/>
             <Route path="/getaquote"element={<GetAQuote/>}/>
+            <Route path="/Infrastructure"element={<Infrastructure/>}/>
+
+            
             
 
 

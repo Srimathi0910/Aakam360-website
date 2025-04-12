@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OnboardingMainImage4 from "../src/img/StartupsEntrepreneur-Main.jpg";
+import{ useRef } from "react";
 
 
 const StartupsForm = () => {
@@ -31,6 +32,7 @@ const StartupsForm = () => {
     pitchDeck: null,
     termsAccepted: false,
   });
+  const fileInputRef = useRef(null);
   const validate = () => {
     let tempErrors = {};
   
@@ -97,6 +99,24 @@ const StartupsForm = () => {
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0; // Return true if no errors
   };
+   
+    const handleFileChange1 = (e) => {
+      const file = e.target.files[0];
+      const maxSize = 500 * 1024; // 500 KB in bytes
+    
+      if (file && file.size > maxSize) {
+        setErrors(prev => ({ ...prev, pitchDeck: "File size should be less than 500 KB" }));
+        setFormData(prev => ({ ...prev, pitchDeck: null }));
+    
+        // Clear the file input
+        if (fileInputRef.current) {
+          fileInputRef.current.value = null;
+        }
+      } else {
+        setErrors(prev => ({ ...prev, pitchDeck: "" }));
+        setFormData(prev => ({ ...prev,pitchDeck: file }));
+      }
+    };
 
   const handleChange = (e) => {
     if (e.target.type === "file") {
@@ -197,7 +217,7 @@ const StartupsForm = () => {
       {/* Form Section */}
       <div className="onboardingWrapper">
         
-      <div className="onboardingform" style={{ height: "1600px" ,minHeight: "400px"}}>
+      <div className="onboardingform">
 
           <div className='borderLine'></div>
           <form onSubmit={handleSubmit}>
@@ -268,8 +288,15 @@ const StartupsForm = () => {
         </div>
 
         <div className="inputBox">
-          <input type="file" name="pitchDeck" accept=".pdf,.doc,.docx" onChange={handleChange} required />
-          <span>Upload Pitch Deck</span>
+          <input
+            type="file"
+            name="pitchDeck"
+            accept=".pdf,.doc,.docx"
+            onChange={handleFileChange1}
+            ref={fileInputRef}
+            required
+          />
+          <span>Upload Pitch Deck (PDF or DOC, Max 500KB)</span>
           {errors.pitchDeck && <p style={{ color: "red" }}>{errors.pitchDeck}</p>}
         </div>
 

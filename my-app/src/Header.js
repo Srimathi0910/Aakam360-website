@@ -73,7 +73,15 @@ const Header = () => {
               <li><Link to="/our-outcomes">Outcomes</Link></li>
             </ul>
           </li>
-          <li><Link to="/history">HISTORY</Link></li>
+          <li className="dropdown">
+            <a href="#">MILESTONES&#9662;</a>
+            <ul className="dropdown-content">
+              <li><Link to="/history"> History</Link></li>
+              <li><Link to="/Infrastructure">Infrastructure</Link></li>
+              <li><Link to="/Feedback">Our Feedback</Link></li>
+              
+            </ul>
+            </li>
           <li><Link to="/events">EVENTS</Link></li>
           <li><Link to="/contact">CONTACT US</Link></li>
         </ul>

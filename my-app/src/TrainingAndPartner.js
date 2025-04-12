@@ -121,7 +121,7 @@ const TrainingAndPartner = () => {
       {/* Form Section */}
       <div className="onboardingWrapper">
         
-      <div className="onboardingform"style={{ height: "1100px" , minHeight: "400px"}}>
+      <div className="onboardingform">
 
           <div className='borderLine'></div>
           <form onSubmit={handleSubmit}>
