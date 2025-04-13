@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './styles.css'; 
-import eventimgmain1 from '../src/img/Events/Aakam360_event(image1).jpg';
-import eventimgmain2 from '../src/img/Events/iyarkai_event(image2).jpg';
-import eventimgmain3 from '../src/img/Events/Event_aakam360(image3).jpg';
-import eventimgmain4 from '../src/img/Events/Event_aakam360(image4).jpg';
+import eventimgmain1 from '../src/img/Events/aakam360-inaguration.jpg';
+import eventimgmain2 from '../src/img/Events/aakam360-inaguration2.jpg';
+import eventimgmain3 from '../src/img/Events/aakam360-inaguration3.jpg';
+import eventimgmain4 from '../src/img/Events/aakam360-inaguration4.jpg';
 const Events2=()=>{
     return(
         <div className='event2'>
