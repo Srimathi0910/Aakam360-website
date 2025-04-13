@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 import{ useRef } from "react";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json';
 
 import ApplyJobImage from "../src/img/Apply-Job-Image.jpg";
 
@@ -15,6 +17,7 @@ const JobApplyForm = () => {
     resume: null,
     agreedToTerms: false,
   });
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
 
 
@@ -93,7 +96,8 @@ const JobApplyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-
+    setLoading(true);
+  
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       if (key === "resume" && formData.resume) {
@@ -102,7 +106,7 @@ const JobApplyForm = () => {
         data.append(key, formData[key]);
       }
     });
-
+  
     try {
       // Send Email
       const emailResponse = await axios.post(
@@ -111,7 +115,7 @@ const JobApplyForm = () => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("Email Response:", emailResponse.data);
-
+  
       // Save Application to Database
       const formResponse = await axios.post(
         "http://localhost:5000/api/job-applications",
@@ -119,14 +123,17 @@ const JobApplyForm = () => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("Form Response:", formResponse.data);
-
-      alert("Application submitted successfully!");
+  
+      // Navigate to submitted page after successful completion of both requests
       navigate("/submitted");
     } catch (error) {
       console.error("Error submitting application:", error);
       alert("Error submitting job application. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   return (
     <section className='onboarding-form-container'>
@@ -199,9 +206,15 @@ const JobApplyForm = () => {
           {errors.agreedToTerms && <p style={{ color: "red" }}>{errors.agreedToTerms}</p>}
         </div>
       </div>
-      <div className="inputBox">
-        <input type="submit" value="Apply" />
-      </div>
+     <div className="inputBox">
+       {loading ? (
+         <div className="lottie-loader">
+           <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
+         </div>
+       ) : (
+         <input type="submit" value="Apply" />
+       )}
+     </div>
     </form>
           </div>
         </div>

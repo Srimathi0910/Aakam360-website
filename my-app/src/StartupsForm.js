@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OnboardingMainImage4 from "../src/img/StartupsEntrepreneur-Main.jpg";
 import{ useRef } from "react";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json';
 
 
 const StartupsForm = () => {
@@ -32,6 +34,8 @@ const StartupsForm = () => {
     pitchDeck: null,
     termsAccepted: false,
   });
+    const [loading, setLoading] = useState(false);
+  
   const fileInputRef = useRef(null);
   const validate = () => {
     let tempErrors = {};
@@ -66,7 +70,12 @@ const StartupsForm = () => {
       tempErrors.website = "Invalid website URL.";
     }
   
-    if (!formData.registrationNumber.trim()) tempErrors.registrationNumber = "Startup Registration Number is required.";
+    if (!formData.registrationNumber.trim()) {
+      tempErrors.registrationNumber = "Startup Registration Number is required.";
+  } else if (isNaN(formData.registrationNumber)) {
+      tempErrors.registrationNumber = "Startup Registration Number must be a number.";
+  }
+  
   
     if (!formData.establishmentYear.trim()) {
       tempErrors.establishmentYear = "Year of Establishment is required.";
@@ -132,71 +141,74 @@ const StartupsForm = () => {
     e.preventDefault();
   
     if (!validate()) { // If validation fails, stop execution
-        return;
+      return;
     }
-
+    setLoading(true);
+  
     try {
-        const formDataToSend = new FormData();
-
-        Object.keys(formData).forEach((key) => {
-            if (key === "pitchDeck" && formData[key]) {
-                formDataToSend.append(key, formData[key]); // Append file
-            } else {
-                formDataToSend.append(key, formData[key]);
-            }
-        });
-
-        // Send email
-        const emailResponse = await axios.post(
-            "http://localhost:5000/sendmail-startup-form",
-            formDataToSend,
-            {
-                headers: { "Content-Type": "multipart/form-data" },
-            }
-        );
-        alert(emailResponse.data.message);
-
-        // Store form data
-        const formResponse = await axios.post(
-            "http://localhost:5000/api/startup-form",
-            formDataToSend,
-            {
-                headers: { "Content-Type": "multipart/form-data" },
-            }
-        );
-
-        alert("Form submitted successfully!");
-
-        // Reset form data
-        setFormData({
-            firstName: "",
-            lastName: "",
-            email: "",
-            contact: "",
-            designation: "",
-            startupName: "",
-            website: "",
-            registrationNumber: "",
-            establishmentYear: "",
-            startupStage: "",
-            industrySector: "",
-            location: "",
-            district: "",
-            state: "",
-            fundingStatus: "",
-            collaboration: "",
-            support: "",
-            pitchDeck: null,
-            termsAccepted: false,
-        });
-
-        setErrors({}); // Clear errors
-        navigate("/submitted");
+      const formDataToSend = new FormData();
+  
+      Object.keys(formData).forEach((key) => {
+        if (key === "pitchDeck" && formData[key]) {
+          formDataToSend.append(key, formData[key]); // Append file
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
+      });
+  
+      // Send email
+      await axios.post(
+        "http://localhost:5000/sendmail-startup-form",
+        formDataToSend,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+  
+      // Store form data
+      await axios.post(
+        "http://localhost:5000/api/startup-form",
+        formDataToSend,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+  
+      // Reset form data after successful submission
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        contact: "",
+        designation: "",
+        startupName: "",
+        website: "",
+        registrationNumber: "",
+        establishmentYear: "",
+        startupStage: "",
+        industrySector: "",
+        location: "",
+        district: "",
+        state: "",
+        fundingStatus: "",
+        collaboration: "",
+        support: "",
+        pitchDeck: null,
+        termsAccepted: false,
+      });
+  
+      setErrors({}); // Clear errors
+  
+      // Redirect to the 'submitted' page
+      navigate("/submitted");
     } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("Failed to submit form.");
+      console.error("Error submitting form:", error);
+      alert("Failed to submit form.");
+    } finally {
+      setLoading(false);
     }
-};
+  };
+  
 
   
   
@@ -308,8 +320,15 @@ const StartupsForm = () => {
       </div>
 
       <div className="inputBox">
-        <input type="submit" value="Apply" />
+        {loading ? (
+          <div className="lottie-loader">
+            <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
+          </div>
+        ) : (
+          <input type="submit" value="Apply" />
+        )}
       </div>
+      
     </form>
           </div>
         </div>

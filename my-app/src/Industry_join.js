@@ -5,6 +5,9 @@ import axios from "axios";
 import './styles.css'; 
 import OnboardingMainImage1 from "../src/img/Industry-Connect-Main.jpg";
 import { Height } from '@mui/icons-material';
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json'; // Adjust path based on your project
+
 
 const Industry_join = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +23,8 @@ const Industry_join = () => {
     agreedToTerms: false,
   });
    const navigate = useNavigate();
+   const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -85,14 +90,20 @@ const Industry_join = () => {
       alert(Object.values(newErrors)[0]); // Show first error in an alert
       return; // Stop the function execution if validation fails
     }
+    
+    setLoading(true);
   
     try {
-      const response = await axios.post('http://localhost:5000/sendmail-industry-join', formData);
-      alert(response.data.message);
-      
+      // Send email
+      await axios.post('http://localhost:5000/sendmail-industry-join', formData);
+  
+      // Store data in the database
       await axios.post("http://localhost:5000/api/industry-join", formData);
       
+      // Navigate to the submitted page
       navigate("/submitted");
+  
+      // Reset form data
       setFormData({
         firstName: "",
         lastName: "",
@@ -105,12 +116,17 @@ const Industry_join = () => {
         aboutCompany: "",
         agreedToTerms: false,
       });
-      setErrors({}); // Clear errors after successful submission
+      
+      // Clear errors after successful submission
+      setErrors({});
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Failed to submit form");
+      alert("Failed to submit form"); // Show alert if there's an error
+    } finally {
+      setLoading(false); // Stop loading state
     }
   };
+  
   
   
 
@@ -191,7 +207,13 @@ const Industry_join = () => {
       </div>
 
       <div className="inputBox">
-        <input type="submit" value="Apply" />
+        {loading ? (
+          <div className="lottie-loader">
+            <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
+          </div>
+        ) : (
+          <input type="submit" value="Apply" />
+        )}
       </div>
     </form>
           </div>

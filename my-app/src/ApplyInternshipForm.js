@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import{ useRef } from "react";
 import "./styles.css";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json'; 
 import OnboardingMainImage5 from "../src/img/Apply-Intern-Main.jpg";
 
 const ApplyInternshipForm = () => {
@@ -24,6 +26,7 @@ const ApplyInternshipForm = () => {
     termsAccepted: false,
   });
   const fileInputRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -106,22 +109,27 @@ const ApplyInternshipForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (validateForm()) {
+      setLoading(true);
+  
       try {
         const formDataToSend = new FormData();
         Object.keys(formData).forEach((key) => {
           formDataToSend.append(key, formData[key]);
         });
-
+  
+        // Submit the form data
         await axios.post("http://localhost:5000/apply", formDataToSend, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-
+  
+        // Send email notification
         await axios.post("http://localhost:5000/sendmail-apply-internship", formDataToSend, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-
-        alert("Form submitted successfully!");
+  
+        // Reset form data after submission
         setFormData({
           firstName: "",
           lastName: "",
@@ -139,14 +147,18 @@ const ApplyInternshipForm = () => {
           reason: "",
           termsAccepted: false,
         });
-
+  
+        // Navigate to the "submitted" page
         navigate("/submitted");
       } catch (error) {
         console.error("Error submitting form:", error);
-        alert("Error submitting application");
+        alert("Error submitting application.");
+      } finally {
+        setLoading(false);
       }
     }
   };
+  
 
   return (
     <section className="onboarding-form-container">
@@ -273,9 +285,15 @@ const ApplyInternshipForm = () => {
               </div>
             </div>
 
-            <div className="inputBox submitBox">
-              <input type="submit" value="Apply" />
-            </div>
+            <div className="inputBox">
+  {loading ? (
+    <div className="lottie-loader">
+      <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
+    </div>
+  ) : (
+    <input type="submit" value="Apply" />
+  )}
+</div>
           </form>
         </div>
       </div>

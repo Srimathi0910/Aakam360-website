@@ -6,6 +6,8 @@ import axios from "axios";
 import "./styles.css";
 import OnboardingMainImage3 from "../src/img/Training-Partner-Main.jpg";
 import{ useRef } from "react";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json'; // Adjust path based on your project
 
 const GetAQuote = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +22,7 @@ const GetAQuote = () => {
     requirements: null, // Store file object
     termsAccepted: false, // Checkbox for terms
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -101,6 +104,7 @@ const GetAQuote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
+    setLoading(true);
   
     try {
       const submissionData = new FormData();
@@ -113,16 +117,14 @@ const GetAQuote = () => {
       submissionData.append("purposeofEnquiry", formData.purposeofEnquiry);
       submissionData.append("message", formData.message);
       submissionData.append("requirements", formData.requirements); 
-      submissionData.append("termsAccepted", formData.termsAccepted.toString()); // Convert boolean to string
+      submissionData.append("termsAccepted", formData.termsAccepted.toString());
   
       // Send email
       const emailResponse = await axios.post(
         "http://localhost:5000/sendmail-get-a-quote",
-        submissionData, // Use submissionData
+        submissionData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-  
-      // alert(emailResponse.data.message);
   
       // Store data in MongoDB
       await axios.post(
@@ -130,8 +132,6 @@ const GetAQuote = () => {
         submissionData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-  
-      navigate("/submitted");
   
       // Reset form
       setFormData({
@@ -146,9 +146,17 @@ const GetAQuote = () => {
         requirements: null,
         termsAccepted: false,
       });
+  
+      // ✅ Navigate only after everything is successful
+      navigate("/submitted");
+  
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Error submitting form. Please try again.");
+      if (error.response || error.message) {
+        alert("Error submitting form. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -223,8 +231,14 @@ const GetAQuote = () => {
             </div>
 
             <div className="inputBox">
-              <input type="submit" value="Submit" />
-            </div>
+  {loading ? (
+    <div className="lottie-loader">
+      <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
+    </div>
+  ) : (
+    <input type="submit" value="Submit" />
+  )}
+</div>
           </form>
         </div>
       </div>

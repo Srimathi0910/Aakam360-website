@@ -4,6 +4,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faClock, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import ContactImage from "../src/img/Contact-Image.jpg";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json'; 
 
 import "./styles.css";
 
@@ -14,6 +16,8 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -41,17 +45,20 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-
+    setLoading(true);
+  
     try {
-      const response = await axios.post("http://localhost:5000/send-contact", formData);
-      alert(response.data.message);
+      await axios.post("http://localhost:5000/send-contact", formData);
       await axios.post("http://localhost:5000/api/forms", formData);
       setFormData({ fullName: "", email: "", subject: "", message: "" });
       navigate("/submitted");
     } catch (error) {
       alert("Failed to send message.");
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   return (
     <div className="contactContainer">
@@ -89,8 +96,17 @@ const Contact = () => {
                 {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
               </div>
               <div className="inputBox">
-                <input type="submit" value="Send" />
-              </div>
+  {loading ? (
+    <div className="lottie-loader">
+      <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
+    </div>
+  ) : (
+    <input type="submit" value="Send" />
+  )}
+</div>
+
+
+
             </form>
           </div>
         </div>

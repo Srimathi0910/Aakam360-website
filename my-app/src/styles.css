@@ -2408,7 +2408,7 @@ object-fit: contain;
   font-size: 0.8em;
 }
 
-.contactForm .inputBox input[type="submit"] {
+.contactForm .inputBox input[type="submit"],.contactForm .inputBox .submitButton[type="submit"] {
   background: #01dbc2;
   color: #121212;
   border: none;
@@ -2420,7 +2420,7 @@ object-fit: contain;
 }
 
 
-.contactForm .inputBox input[type="submit"]:hover {
+.contactForm .inputBox input[type="submit"]:hover,.contactForm .inputBox .submitButton[type="submit"]:hover {
   background: #00b89c;
 }
 .contactForm .inputBox input[type="submit"]:active {
@@ -3554,7 +3554,7 @@ body {
   font-size: 0.8rem;
 }
 
-.onboardingform .inputBox input[type="submit"] {
+.onboardingform .inputBox input[type="submit"],.inputBox .submitButton[type="submit"] {
   background: #01dbc2;
   color: #121212;
   border: none;
@@ -4902,6 +4902,13 @@ text-align: left;
   -webkit-appearance: none;
 }
 /* Dark Mode */
+
+
+.lottie-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 

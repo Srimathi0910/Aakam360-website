@@ -39,6 +39,15 @@ const formSchema = new mongoose.Schema(
   { collection: "ContactForm" }
 );
 const Form = mongoose.model("ContactForm", formSchema);
+app.post("/api/forms", async (req, res) => {
+  try {
+    const newForm = new Form(req.body);
+    await newForm.save();
+    res.status(201).json({ message: "Form submitted successfully!" });
+  } catch (error) {
+    res.status(500).json({ error: "Error saving form data" });
+  }
+});
 
 // Job Application Schema
 const jobApplicationSchema = new mongoose.Schema({
@@ -63,15 +72,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // API Routes
-app.post("/api/forms", async (req, res) => {
-  try {
-    const newForm = new Form(req.body);
-    await newForm.save();
-    res.status(201).json({ message: "Form submitted successfully!" });
-  } catch (error) {
-    res.status(500).json({ error: "Error saving form data" });
-  }
-});
+
 
 app.post("/api/job-applications", upload.single("resume"), async (req, res) => {
   try {
@@ -332,15 +333,25 @@ app.listen(PORT, () => {
 
 
 
-// email code
-app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-    },
+  host: 'smtp.gmail.com',
+  port: 587,                // ✅ Correct TLS port
+  secure: false,            // ✅ Must be false for port 587 (STARTTLS)
+  auth: {
+      user: process.env.EMAIL_USER,  // ✅ Your Gmail or Google App email
+      pass: process.env.EMAIL_PASS,  // ✅ App-specific password, NOT real Gmail password
+  },
+  tls: {
+      rejectUnauthorized: false,     // ⚠️ OK for dev, but not recommended in prod
+  },
+  logger: true,             // ✅ Debug logging
+  debug: true,              // ✅ More detailed output
+  socketTimeout: 60000,     // ✅ Good (60s)
+  connectionTimeout: 60000, // ✅ Good (60s)
 });
+
+
+
 
 // Handle form submission contact form
 app.post('/send-contact', async (req, res) => {

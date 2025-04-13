@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OnboardingMainImage2 from "../src/img/Institution-Connect-Main.jpg";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json'; // Adjust path based on your project
 import './styles.css'; 
 
 const Institution_join = () => {
@@ -18,6 +20,8 @@ const Institution_join = () => {
     mobileNumber: "",
     termsAccepted: false,
   });
+  const [loading, setLoading] = useState(false);
+
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -69,18 +73,24 @@ const Institution_join = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
     // ✅ Validate form before submitting
     if (!validateForm()) {
       return; // ❌ Stop form submission if validation fails
     }
-
+  
+    setLoading(true);
+  
     try {
-      const response = await axios.post('http://localhost:5000/sendmail-institution-join', formData);
-            alert(response.data.message);
+      // Send email (without showing an alert)
+      await axios.post('http://localhost:5000/sendmail-institution-join', formData);
+      
+      // Store data in the database
       await axios.post("http://localhost:5000/api/institution-join", formData);
+  
+      // Navigate to the 'submitted' page
       navigate("/submitted");
-
+  
       // ✅ Reset form after successful submission
       setFormData({
         firstName: "",
@@ -95,13 +105,16 @@ const Institution_join = () => {
         mobileNumber: "",
         termsAccepted: false,
       });
-
+  
       setErrors({}); // Clear any errors
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Error submitting form. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading state
     }
   };
+  
 
   return (
     <section className='onboarding-form-container'>
@@ -159,8 +172,14 @@ const Institution_join = () => {
               </div>
             </div>
 
-            <div className="inputBox submitBox">
-              <input type="submit" value="Apply" />
+            <div className="inputBox">
+              {loading ? (
+                <div className="lottie-loader">
+                  <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
+                </div>
+              ) : (
+                <input type="submit" value="Apply" />
+              )}
             </div>
           </form>
         </div>
