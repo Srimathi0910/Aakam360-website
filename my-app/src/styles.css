@@ -4854,6 +4854,8 @@ text-align: left;
   width: 200px;
   height: 200px;
   border-radius: 150px;
+  box-shadow: 0 0 20px grey;
+  border: 2px solid black;
   object-fit: cover;
 }
 

@@ -18,14 +18,16 @@ const Hero_section = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(false); // Start fade-out
+
+      // Change image after fade-out completes
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        setFade(true); // Start fade-in after changing image
-      }, 800); // Wait for fade-out before changing image
-    }, 3000); // Change image every 4 seconds
+        setFade(true); // Start fade-in
+      }, 1000); // This should match your CSS transition time
+    }, 4000); // Total cycle time
 
     return () => clearInterval(interval);
-  }, [currentImageIndex]);
+  }, []); //
 
   return (
     <div className="operations-container1">
