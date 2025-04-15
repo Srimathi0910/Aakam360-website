@@ -117,7 +117,7 @@ const Contact = () => {
               <FontAwesomeIcon icon={faLocationDot} className="customIcon" />
               <div>
                 <h4>Location:</h4>
-                <p> Sankari-Tiruchengode main road,Block B, Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304.</p>
+                <p> <span style={{textAlign:"center"}}>Aakam360<br /> </span>Sankari-Tiruchengode main road,Block B, Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304.</p>
               </div>
             </li>
             <br />

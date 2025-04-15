@@ -61,7 +61,7 @@ import JobApplyForm from './JobApplyForm';
 import Message from './Message';
 import GetAQuote from './GetAQuote';
 import Infrastructure from'./Infrastructure';
-
+import InnovationForm from './InnovationForm';
 
 
 // import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
@@ -143,6 +143,8 @@ const App = () => {
             <Route path="/submitted"element={<Message/>}/>
             <Route path="/getaquote"element={<GetAQuote/>}/>
             <Route path="/Infrastructure"element={<Infrastructure/>}/>
+            <Route path="/InnovationIdeaForm"element={<InnovationForm/>}/>
+
 
             
             

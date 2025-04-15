@@ -322,6 +322,55 @@ app.post("/api/get-a-quote", upload.single("requirements"), async (req, res) => 
 });
 
 
+// Innovation form schema
+const innovationSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  designation: String,
+  institutionName: String,
+  location: String,
+  district: String,
+  state: String,
+  domains: String,
+  email: String,
+  mobileNumber: String,
+  collegeName: String,
+  department: String,
+  yearofstudy: String,
+  title: String,
+  problem: String,
+  solution: String,
+  techUsed: String,
+  uniqueness: String,
+  impact: String,
+  audience: String,
+  termsAccepted: Boolean,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+// Model
+const InnovationForm = mongoose.model("InnovationForm", innovationSchema);
+
+// Route to handle form submission
+app.post("/api/innovationform", async (req, res) => {
+  try {
+    const newForm = new InnovationForm(req.body);
+    await newForm.save();
+    res.status(201).json({ message: "Form data saved successfully!" });
+  } catch (error) {
+    console.error("Error saving form data:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Test route
+app.get("/", (req, res) => {
+  res.send("Innovation Form Backend is Running!");
+});
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
@@ -1011,5 +1060,58 @@ app.post("/sendmail-apply-internship", upload.single("resume"), async (req, res)
   } catch (error) {
     console.error("Error submitting form:", error);
     res.status(500).json({ success: false, message: "Failed to send email." });
+  }
+});
+
+
+app.post("/sendmail-innovation-form", async (req, res) => {
+  const { firstName, lastName, email, mobileNumber, title } = req.body;
+
+  // Email to Admin
+  const adminMailOptions = {
+    from: {
+      name: "Aakam360 Team",
+      address: "srimathinagarajan2003@gmail.com",
+    },
+    to: "e21it050@shanmugha.edu.in", // Replace with admin's email
+    subject: "New Innovation Form Submission",
+    text: `A new submission has been received:
+
+    Name: ${firstName} ${lastName}
+    Email: ${email}
+    Mobile: ${mobileNumber}
+    Innovation Title: ${title}
+
+    Please review the details of the form submission.`,
+  };
+
+  // Thank You Email to Customer
+  const customerMailOptions = {
+    from: {
+      name: "Aakam360 Team",
+      address: "srimathinagarajan2003@gmail.com",
+    },
+    to: email,
+    subject: "Thank You for Your Submission",
+    text: `Dear ${firstName} ${lastName},
+
+    Thank you for submitting your innovative idea to Aakam. We appreciate your contribution to our ecosystem. We will review your submission and get back to you soon.
+
+    Best regards,
+    Aakam Team`,
+  };
+
+  try {
+    // Send email to admin
+    await transporter.sendMail(adminMailOptions);
+
+    // Send thank you email to customer
+    await transporter.sendMail(customerMailOptions);
+
+    // Respond back to frontend with a success message
+    res.status(200).send({ message: "Emails sent successfully!" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).send({ message: "Error sending emails. Please try again later." });
   }
 });
