@@ -63,7 +63,9 @@ const Industry_join = () => {
     if (formData.employeeSize && !/^\d+$/.test(formData.employeeSize)) {
       newErrors.employeeSize = "Employee size should be a number";
     }
+    if (!formData.collaboratewithAakam.trim()) newErrors.collaboratewithAakam = "Domains are required";
 
+  
     // Website Validation
     if (
       formData.companyWebsite &&
@@ -114,6 +116,7 @@ const Industry_join = () => {
         employeeSize: "",
         domains: "",
         aboutCompany: "",
+        collaboratewithAakam:"",
         agreedToTerms: false,
       });
       
@@ -192,6 +195,16 @@ const Industry_join = () => {
           <span>About Company</span>
           {errors.aboutCompany && <p style={{ color: "red" }}>{errors.aboutCompany}</p>}
         </div>
+        <div className="inputBox">
+          <textarea
+            name="collaboratewithAakam"
+            value={formData.collaborate}
+            onChange={handleChange}
+            required
+          ></textarea>
+          <span>How do you collaborate with Aakam?</span>
+          {errors.collaboratewithAakam && <p style={{ color: "red" }}>{errors.collaboratewithAakam}</p>}
+        </div>
 
         <div className="checkBox">
           <input
@@ -212,7 +225,7 @@ const Industry_join = () => {
             <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
           </div>
         ) : (
-          <input type="submit" value="Apply" />
+          <input type="submit" value="Submit" />
         )}
       </div>
     </form>

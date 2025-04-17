@@ -159,6 +159,16 @@ const Institution_join = () => {
                   {errors[field.name] && <p style={{ color: "red" }}>{errors[field.name]}</p>}
                 </div>
               ))}
+              <div className="inputBox">
+                        <textarea
+                          name="collaboratewithAakam"
+                          value={formData.collaborate}
+                          onChange={handleChange}
+                          required
+                        ></textarea>
+                        <span>How do you collaborate with Aakam?</span>
+                        {errors.collaboratewithAakam && <p style={{ color: "red" }}>{errors.collaboratewithAakam}</p>}
+                      </div>
 
               <div className="checkBox">
                 <input
@@ -178,7 +188,7 @@ const Institution_join = () => {
                   <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
                 </div>
               ) : (
-                <input type="submit" value="Apply" />
+                <input type="submit" value="Submit" />
               )}
             </div>
           </form>

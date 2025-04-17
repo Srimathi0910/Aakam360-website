@@ -1115,3 +1115,16 @@ app.post("/sendmail-innovation-form", async (req, res) => {
     res.status(500).send({ message: "Error sending emails. Please try again later." });
   }
 });
+
+
+
+
+// chatbot code
+
+
+app.post('/api/chatbot', (req, res) => {
+  const userMessage = req.body.message;
+  const botResponse = `You said: "${userMessage}". This is a sample response!`;
+  res.json({ response: botResponse });
+});
+

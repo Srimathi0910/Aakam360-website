@@ -41,7 +41,62 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
+      
     -->
+    <!-- <script>
+      (function (w, d, s, o, f, js, fjs) {
+        w["botsonic_widget"] = o;
+        w[o] =
+          w[o] ||
+          function () {
+            (w[o].q = w[o].q || []).push(arguments);
+          };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+      })(window, document, "script", "Botsonic", "https://widget.botsonic.com/CDN/botsonic.min.js");
+      Botsonic("init", {
+        serviceBaseUrl: "https://api-azure.botsonic.ai",
+        token: "af5fabe2-9013-45b5-89e9-734165ab467c",
+      });
+    </script>
+      <script>
+        (function (w, d, s, o, f, js, fjs) {
+          w["botsonic_widget"] = o;
+          w[o] =
+            w[o] ||
+            function () {
+              (w[o].q = w[o].q || []).push(arguments);
+            };
+          (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+          js.id = o;
+          js.src = f;
+          js.async = 1;
+          fjs.parentNode.insertBefore(js, fjs);
+        })(window, document, "script", "Botsonic", "https://widget.botsonic.com/CDN/botsonic.min.js");
+      
+        Botsonic("init", {
+          serviceBaseUrl: "https://api-azure.botsonic.ai",
+          token: "f795fcc3-4938-4fcb-8f37-a59f5299d8ad",
+        });
+      </script> -->
+      <script type="text/javascript">
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+              window.voiceflow.chat.load({
+                verify: { projectID: '6800f7ce00fd6f47823073c3' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production'
+              });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+      </script>
+      
       
   </body>
+  
 </html>

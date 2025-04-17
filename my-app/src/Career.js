@@ -1,89 +1,14 @@
-// import React from "react";
-// import careers from "../src/img/careers-aakam360.jpg";
-// import data_analyst from "../src/img/Data_analyst_aakam360.jpg";
-// import frontend from "../src/img/frontend_dev_aakam360.jpg";
-// import product_manager from "../src/img/product_manager_aakam360.jpg";
-// import "./styles.css";
-
-// const Career = () => {
-
-//   return (
-//     // <div className="career-container">
-//     //   <h1 className="career-heading">Careers</h1>
-//     //   <div className="career-intro">
-//     //     <div>
-//     //     <img src={careers} alt="Career" className="career-img" />
-//     //     </div>
-//     //     <div>
-//     //     <p className="career-text">
-//     //       Looking to grow your career in a dynamic, innovative environment? Aakam360 offers exciting opportunities in the fields of technology, management, and research.
-//     //     </p>
-//     //     </div>
-    
-//     //   </div>
-//     <div className="operations-container">
-//           {/* Hero Section */}
-//           <div className="hero-section">
-//             <img src={careers} alt="careers" className="hero-image" />
-//             <div className="hero-text">
-//               <h1>Career</h1>
-//               <h3>Looking to grow your career in a dynamic, innovative environment? Aakam360 offers exciting opportunities in the fields of technology, management, and research.</h3>
-//             </div>
-//           </div>
-//       <h2 className="current-openings">Current Openings</h2>
-//       <div className="Career_description">
-//       <div style={{ backgroundColor: "#3639db" }} className="Career_description_content">
-//           <h2>Front-End Developer</h2>
-//           <ul>
-//             <li>Location: Sankari, Salem</li>
-//             <li>Responsibilities: Develop and maintain user-friendly websites.</li>
-//             <li>Qualifications: Proficiency in HTML, CSS, JavaScript, and modern frameworks.</li>
-//           </ul>
-//         </div>
-//         <div>
-//           <img src={frontend} alt="frontend"  className="current-opening-images"/>
-//         </div>
-//       </div>
-//       <div className="Career_description">
-//         <div>
-//           <img src={product_manager} alt="product_manager" />
-//         </div>
-//         <div style={{ backgroundColor: "#45ffa2" }} className="Career_description_content">
-//           <h2>Product Manager</h2>
-//           <ul>
-//             <li>Location: Sankari, Salem</li>
-//             <li>Responsibilities: Oversee product development and ensure alignment with business goals.</li>
-//             <li>Qualifications: Experience in product management and agile methodology.</li>
-//           </ul>
-//         </div>
-//       </div>
-//       <div className="Career_description">
-//           <div style={{ backgroundColor: "#ceab0e" }} className="Career_description_content">
-//             <h2>Data Analyst</h2>
-//             <ul>
-//               <li>Location: Sankari, Salem</li>
-//               <li>Responsibilities: Analyze data to provide insights for business decisions.</li>
-//               <li>Qualifications: Strong skills in data analysis tools like Excel, SQL, and Python.</li>
-//             </ul>
-//           </div>
-//           <div>
-//             <img src={data_analyst} alt="data_analyst" />
-//           </div>
-//         </div>
-        
-
-
-      
-//     </div>
-//   );
-// };
-
-// export default Career;
 import React from "react";
 import { Link } from 'react-router-dom';
 import { FaLightbulb, FaUsers, FaLaptopCode, FaBalanceScale, FaCode, FaBullhorn, FaPaintBrush, FaCogs } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
+
 import careers from "../src/img/Career-Main-image.jpg";
 import './styles.css';
+import RoleImage1 from "../src/img/RoleImage1.jpg";
+import RoleImage2 from "../src/img/RoleImage2.jpg";
+import RoleImage3 from "../src/img/RoleImage3.jpg";
+import RoleImage4 from "../src/img/RoleImage4.jpg";
 
 const Career = () => {
   const benefits = [
@@ -139,7 +64,84 @@ const Career = () => {
       experience: "3+ years",
     },
   ];
+  const responsibilities = [
+    {
+      id: 1,
+      responsibilities: [
+        "Develop user-friendly and responsive websites.",
+        "Collaborate with design teams to create intuitive UI.",
+        "Ensure cross-browser compatibility and optimize application performance."
+      ],
+      imgs:RoleImage1,
+    },
+    {
+      id: 2,
+      responsibilities: [
+        "Plan and execute marketing strategies to boost brand awareness.",
+        "Manage social media campaigns and track performance.",
+        "Coordinate with sales teams to generate leads and increase conversions."
+      ],
+      imgs:RoleImage2,
+    },
+    {
+      id: 3,
+      responsibilities: [
+        "Design intuitive and engaging user interfaces.",
+        "Conduct user research and usability testing.",
+        "Collaborate with developers to ensure seamless integration of designs."
+      ],
+      imgs:RoleImage3
+    },
+    {
+      id: 4,
+      responsibilities: [
+        "Write clean, efficient, and maintainable code.",
+        "Collaborate with cross-functional teams to develop software solutions.",
+        "Troubleshoot and resolve software defects in a timely manner."
+      ],
+      imgs:RoleImage4
+    }
+  ];
+  const jobBenefits = [
+    {
+      id: 1,
+      benefits: [
+        "Work with modern frontend frameworks like React and Vue.",
+        "Collaborate with design teams to bring UI/UX ideas to life.",
+        "Flexible work hours and remote-friendly policies.",
+        "Access to premium dev tools and regular code reviews."
+      ]
+    },
+    {
+      id: 2,
+      benefits: [
+        "Manage campaigns across social platforms and Google Ads.",
+        "Performance bonuses and target-based incentives.",
+        "Exposure to brand strategy and analytics tools.",
+        "Attend marketing events, webinars, and training sessions."
+      ]
+    },
+    {
+      id: 3,
+      benefits: [
+        "Creative freedom using tools like Figma and Adobe XD.",
+        "User research opportunities and feedback integration.",
+        "Cross-functional collaboration with frontend teams.",
+        "Portfolio-building and participation in design sprints."
+      ]
+    },
+    {
+      id: 4,
+      benefits: [
+        "Hands-on experience with full-stack development.",
+        "Access to CI/CD tools and cloud infrastructure.",
+        "Hackathons, certifications, and internal innovation events.",
+        "Mentorship from senior developers and architects."
+      ]
+    }
+  ];
 
+  
   return (
     <div className="operations-container1">
       {/* Hero Section */}
@@ -166,6 +168,57 @@ const Career = () => {
             </div>
           ))}
         </div>
+        {/* Arrow */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "300px", margin: "20px 0" }}>
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+</div>
+        <div>
+        <div className="benefits-container" >
+      {responsibilities.map((role) => (
+        <div key={role.id} className="benefit-card" >
+          <img src={role.imgs} alt={`Role ${role.id}`} style={{
+          width: "200px",
+          height: "200px",
+          objectFit: "cover",
+          borderRadius: "50%",
+          marginBottom: "10px",
+          border:"3px solid black",
+          boxShadow:"0px 0px 10px blue"
+        }}></img>
+          <h3>Responsibilities for Role </h3>
+          <ul className="left-aligned-list">
+            {role.responsibilities.map((task, index) => (
+              <li key={index}>{task}</li>
+            ))}
+          </ul>
+        </div>
+        
+      ))}
+      </div>
+      {/* Arrow */}
+      <div style={{ display: "flex", justifyContent: "center", gap: "300px", margin: "20px 0" }}>
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+</div>
+      <div className="benefits-container" >
+      {jobBenefits.map((role) => (
+        <div key={benefits.id} className="benefit-card" >
+          <h3>BENEFITS</h3>
+          <ul className="left-aligned-list">
+            {role.benefits.map((task, index) => (
+              <li key={index}>{task}</li>
+            ))}
+          </ul>
+        </div>
+        
+      ))}
+      </div>
+    </div>
       </section>
 
       {/* Why Join Aakam360 Section */}

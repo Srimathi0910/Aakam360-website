@@ -210,7 +210,7 @@ const TrainingAndPartner = () => {
             <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />
           </div>
         ) : (
-          <input type="submit" value="Apply" />
+          <input type="submit" value="Submit" />
         )}
       </div>
     </form>

@@ -32,7 +32,6 @@ const Allone = () => {
       <Information/>
       <Onboarding />
       <WhyChooseUs/>
-      <Chatbot />
     
       
       

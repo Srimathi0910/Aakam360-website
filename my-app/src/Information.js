@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from 'react';
 
 const NumberCounter = ({ targetNumber, label, duration = 2000 }) => {
   const [count, setCount] = useState(1);

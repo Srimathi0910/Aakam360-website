@@ -4527,6 +4527,21 @@ body {
   transition: transform 0.3s ease-in-out;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+.left-aligned-list {
+  text-align: left;
+  padding-left: 20px;
+  margin: 0;
+}
+.arrow-divider {
+  text-align: center;
+  margin: 20px 0;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
 
 .benefit-card:hover {
   transform: translateY(-20px);
@@ -5186,4 +5201,84 @@ text-align: left;
 
 
 
+/* chatbot code */
+/* General body styling */
 
+
+.chatbot-container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #f1f1f1;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.chat-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message.user {
+  text-align: right;
+  color: #2c3e50;
+}
+
+.message.bot {
+  text-align: left;
+  color: #16a085;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.send-btn,
+.mic-btn {
+  padding: 8px 12px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.send-btn:hover,
+.mic-btn:hover {
+  background-color: #1e6ba1;
+}
+
+.mic-btn.listening {
+  background-color: #c0392b;
+}
+#botsonic-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
