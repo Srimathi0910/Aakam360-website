@@ -68,7 +68,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="footer-bottom">
-        <p>Copyright © 2024. All Rights Reserved.</p>
+        <p>Copyright © 2025. All Rights Reserved.</p>
       </div>
       <div className='IconImages'>
         <a href="https://www.instagram.com/aakam360/" target="_blank" rel="noopener noreferrer">

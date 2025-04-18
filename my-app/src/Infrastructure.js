@@ -1,8 +1,9 @@
 import React from 'react';
-import infra1 from '../src/img/infra1.jpg';
-import infra2 from '../src/img/infra2.jpg';
-import infra3 from '../src/img/infra3.jpg';
-import infra4 from '../src/img/infra4.jpg';
+import infra1 from '../src/img/InfraImage1.JPG';
+import infra2 from '../src/img/InfraImage2.jpg';
+import infra3 from '../src/img/InfraImage3.JPG';
+import infra4 from '../src/img/InfraImage4.JPG';
+
 
 
 
@@ -28,7 +29,7 @@ const infrastructureData = [
     style: 'diamond',
   },
   {
-    title: 'Eco-friendly Terrace Garden',
+    title: 'Eco-friendly Garden',
     description: 'Sustainable vertical garden promoting green practices.',
     image:  infra4,
     style: 'circle',

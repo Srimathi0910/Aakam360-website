@@ -1,43 +1,48 @@
-import React from 'react';
-import './styles.css';
-import { useTheme } from './ThemeContext'; 
-import Header from'./Header.js';
-import  Hero_section from './Hero_section';
-import  Our_5i from './Our_5i';
-import Career from './Career';
-import Technology from'./Technology';
-import Feedback from './Feedback';
-import Chatbot from './Chatbot.js';
-import ApplyInternship from './ApplyInternship.js';
-// import Footer from './Footer.js';
-import Initiatives from './Initiatives.js';
-import Onboarding from './Onboarding.js';
-import Information from './Information.js';
-import WhyChooseUs from'./WhyChooseUs';
-
-
-
-
+// my-app/src/Allone.js
+import React, { useState } from "react";
+import RoleSelector from "./RoleSelector";
+import Hero_section from "./Hero_section";
+import Our_5i from "./Our_5i";
+import Career from "./Career";
+import Technology from "./Technology";
+import ApplyInternship from "./ApplyInternship";
+import Initiatives from "./Initiatives";
+import Information from "./Information";
+import Onboarding from "./Onboarding";
+import WhyChooseUs from "./WhyChooseUs";
+import VisitorCount from "./VisitorCount";
 
 const Allone = () => {
+  const [userRole, setUserRole] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleRoleSelection = (role) => {
+    setLoading(true); // Start loading
+    setUserRole(role);
+    setLoading(false); // Stop loading after role is set
+  };
+
   return (
-    <div> 
-
-      < Hero_section/>
-      <Our_5i/>
-      <Career />
-      <Technology />
-      <ApplyInternship />
-      <Initiatives />
-      <Information/>
-      <Onboarding />
-      <WhyChooseUs/>
-    
-      
-      
-
-
-      
+    <div>
+      {!userRole ? (
+        <RoleSelector onSelectRole={handleRoleSelection} />
+      ) : loading ? (
+        <div className="loading">Loading...</div> // Loading state
+      ) : (
+        <div className="page-content">
+          <Hero_section userRole={userRole} />
+          <Our_5i />
+          <Career />
+          <Technology />
+          <ApplyInternship />
+          <Initiatives />
+          <Information />
+          <Onboarding />
+          <WhyChooseUs />
+          <VisitorCount trigger={userRole} /> {/* Pass trigger for live updates */}
+          
+        </div>
+      )}
     </div>
   );
 };

@@ -20,6 +20,7 @@ const Industry_join = () => {
     employeeSize: "",
     domains: "",
     aboutCompany: "",
+    collaboratewithAakam:"",
     agreedToTerms: false,
   });
    const navigate = useNavigate();

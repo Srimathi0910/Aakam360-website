@@ -18,6 +18,7 @@ const Institution_join = () => {
     domains: "",
     email: "",
     mobileNumber: "",
+    collaboratewithAakam:"",
     termsAccepted: false,
   });
   const [loading, setLoading] = useState(false);
@@ -46,12 +47,14 @@ const Institution_join = () => {
     if (!formData.district.trim()) newErrors.district = "District is required";
     if (!formData.state.trim()) newErrors.state = "State is required";
     if (!formData.domains.trim()) newErrors.domains = "Domains are required";
+    
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
+    if (!formData.collaboratewithAakam.trim()) newErrors.collaboratewithAakam = "This is required";
 
     if (!formData.mobileNumber.trim()) {
       newErrors.mobileNumber = "Mobile Number is required";
@@ -103,6 +106,7 @@ const Institution_join = () => {
         domains: "",
         email: "",
         mobileNumber: "",
+        collaboratewithAakam:"",
         termsAccepted: false,
       });
   

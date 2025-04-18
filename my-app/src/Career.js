@@ -9,6 +9,7 @@ import RoleImage1 from "../src/img/RoleImage1.jpg";
 import RoleImage2 from "../src/img/RoleImage2.jpg";
 import RoleImage3 from "../src/img/RoleImage3.jpg";
 import RoleImage4 from "../src/img/RoleImage4.jpg";
+import CareerVideos from "./CareerVideos";
 
 const Career = () => {
   const benefits = [
@@ -140,7 +141,12 @@ const Career = () => {
       ]
     }
   ];
-
+  const videos = [
+    'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    'https://www.youtube.com/embed/ysz5S6PUM-U',
+    'https://www.youtube.com/embed/tgbNymZ7vqY',
+    'https://www.youtube.com/embed/oUFJJNQGwhk'
+  ];
   
   return (
     <div className="operations-container1">
@@ -197,6 +203,11 @@ const Career = () => {
         </div>
         
       ))}
+      
+      
+      <div>
+        <CareerVideos />
+      </div>
       </div>
       {/* Arrow */}
       <div style={{ display: "flex", justifyContent: "center", gap: "300px", margin: "20px 0" }}>

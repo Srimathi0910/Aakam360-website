@@ -107,6 +107,7 @@ const industryJoinSchema = new mongoose.Schema(
     employeeSize: Number,
     domains: String,
     aboutCompany: String,
+    collaboratewithAakam:String,
     agreedToTerms: Boolean,
   },
   { collection: "IndustryJoinForms" }
@@ -135,6 +136,7 @@ const institutionSchema = new mongoose.Schema({
   domains: String,
   email: String,
   mobileNumber: String,
+  collaboratewithAakam:String,
   termsAccepted: Boolean,
 });
 const InstitutionJoinForm = mongoose.model("InstitutionJoinForms", institutionSchema);
@@ -622,6 +624,7 @@ app.post("/sendmail-industry-join", async (req, res) => {
     employeeSize,
     domains,
     aboutCompany,
+    collaboratewithAakam,
     agreedToTerms,
   } = req.body;
 
@@ -644,6 +647,7 @@ app.post("/sendmail-industry-join", async (req, res) => {
         <p><strong>Employee Size:</strong> ${employeeSize}</p>
         <p><strong>Domains:</strong> ${domains}</p>
         <p><strong>About Company:</strong> ${aboutCompany}</p>
+         <p><strong>About Collaborate With Aakam</strong> ${collaboratewithAakam}</p>
         <p><strong>Agreed to Terms:</strong> ${agreedToTerms ? "Yes" : "No"}</p>
       </div>
     `,
@@ -699,6 +703,7 @@ app.post("/sendmail-institution-join", async (req, res) => {
     domains,
     email,
     mobileNumber,
+    collaboratewithAakam,
     termsAccepted,
   } = req.body;
 
@@ -723,6 +728,7 @@ app.post("/sendmail-institution-join", async (req, res) => {
         <p><strong>Domains:</strong> ${domains}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Mobile Number:</strong> ${mobileNumber}</p>
+        <p><strong>Collaborate With Aakam</strong> ${collaboratewithAakam}</p>
         <p><strong>Agreed to Terms:</strong> ${termsAccepted ? "Yes" : "No"}</p>
       </div>
     `
@@ -1122,9 +1128,61 @@ app.post("/sendmail-innovation-form", async (req, res) => {
 // chatbot code
 
 
-app.post('/api/chatbot', (req, res) => {
-  const userMessage = req.body.message;
-  const botResponse = `You said: "${userMessage}". This is a sample response!`;
-  res.json({ response: botResponse });
+// app.post('/api/chatbot', (req, res) => {
+//   const userMessage = req.body.message;
+//   const botResponse = `You said: "${userMessage}". This is a sample response!`;
+//   res.json({ response: botResponse });
+// });
+
+// server.js (Backend)
+
+
+// Sample data (you would likely use a database in a real app)
+const filePath = path.join(__dirname, 'visitorCounts.json');
+
+// Default counts
+let visitorCounts = {
+  students: 0,
+  industry: 0,
+  internship: 0,
+  others: 0
+};
+
+// Load existing counts from file if exists
+function loadCounts() {
+  if (fs.existsSync(filePath)) {
+    const data = fs.readFileSync(filePath, 'utf8');
+    visitorCounts = JSON.parse(data);
+  } else {
+    saveCounts(); // Save initial data
+  }
+}
+
+// Save updated counts to file
+function saveCounts() {
+  fs.writeFileSync(filePath, JSON.stringify(visitorCounts, null, 2));
+}
+
+// Initialize counts on server start
+loadCounts();
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Increment count for a role
+app.post('/api/visitors/increment/:role', (req, res) => {
+  const { role } = req.params;
+  if (visitorCounts.hasOwnProperty(role)) {
+    visitorCounts[role]++;
+    saveCounts();
+    res.status(200).json({ message: `${role} count incremented`, counts: visitorCounts });
+  } else {
+    res.status(400).json({ message: 'Invalid role' });
+  }
 });
 
+// Get current visitor counts
+app.get('/api/visitors', (req, res) => {
+  res.json(visitorCounts);
+});
