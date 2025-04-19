@@ -11,6 +11,7 @@ import Information from "./Information";
 import Onboarding from "./Onboarding";
 import WhyChooseUs from "./WhyChooseUs";
 import VisitorCount from "./VisitorCount";
+import LoginPage from "./LoginPage";
 
 const Allone = () => {
   const [userRole, setUserRole] = useState(null);
@@ -31,6 +32,7 @@ const Allone = () => {
       ) : (
         <div className="page-content">
           <Hero_section userRole={userRole} />
+
           <Our_5i />
           <Career />
           <Technology />
@@ -40,6 +42,7 @@ const Allone = () => {
           <Onboarding />
           <WhyChooseUs />
           <VisitorCount trigger={userRole} /> {/* Pass trigger for live updates */}
+          <LoginPage />
           
         </div>
       )}

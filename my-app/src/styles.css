@@ -1897,7 +1897,10 @@ footer {
   width:250px;
   height: 250px;
   object-fit: cover;
+  align-items: center;
+  justify-content: center;
   border-radius: 125px;
+  margin-top:100px
 }
 /* .history-event:hover {
   background-color: #f0f0f0;
@@ -1950,6 +1953,12 @@ footer {
 .text {
   text-align: left !important;
 }
+.history-event > div {
+
+  align-items: center;
+  justify-content: center;
+}
+
 
 /* .vision-mission-images img{
   width: 200px;
@@ -2567,6 +2576,7 @@ body {
   /* font-family: 'Poppins', sans-serif; */
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   /* background-color: var(--bg-color); */
   /* color: var(--text-color); */
   /* transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; */
@@ -3554,13 +3564,14 @@ body {
 .onboardingform .inputBox input:focus ~ span,
 .onboardingform .inputBox textarea:focus ~ span,
 .onboardingform .inputBox input:valid ~ span,
-.onboardingform .inputBox textarea:valid ~ span {
+.onboardingform .inputBox textarea:valid ~ span
+ {
   transform: translateY(-20px);
   color: #01dbc2;
   font-size: 0.8rem;
 }
 
-.onboardingform .inputBox input[type="submit"],.inputBox .submitButton[type="submit"] {
+.onboardingform .inputBox input[type="submit"],.inputBox .submitButton[type="submit"]{
   background: #01dbc2;
   color: #121212;
   border: none;
@@ -3569,6 +3580,18 @@ body {
   padding: 10px 20px;
   border-radius: 4px;
   transition: 0.3s;
+}
+.onboardingform  form button{
+  background: #01dbc2;
+  color: #121212;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: 0.3s;
+  column-gap: 20px;
+
 }
 
 .onboardingform .inputBox input[type="submit"]:hover {
@@ -5368,26 +5391,60 @@ input[type="text"] {
   z-index: 1; /* Ensure content stays above overlay */
 }
 
-.role-selector-box::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: url('../src/img/aakam-welcome-image.jpg') center/cover no-repeat;
-  z-index: -2;
-  filter: brightness(0.5); /* darkens the image */
+
+/* Add this to your CSS file */
+
+.role-form {
+  position: relative;
+  padding: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
 }
 
-.role-selector-box::after {
+.role-form::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent dark overlay */
-  z-index: -1;
+  inset: 0;
+  background: url('./img/aakam-entrance-image.jpg') center/cover no-repeat;
+  z-index: 0;
 }
 
+.role-form::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(122, 117, 117, 0.6); /* Black overlay with 60% opacity */
+  z-index: 1;
+}
 
+.role-form h2,
+.role-form button {
+  position: relative;
+  z-index: 2;
+}
+
+.role-form h2 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.role-form button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.role-form button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
 .role-selector-box h2 {
   margin-bottom: 20px;
@@ -5406,6 +5463,61 @@ input[type="text"] {
 
 .role-selector-box button:hover {
   background: linear-gradient(to right,deeppink,rebeccapurple);
+  color: #ffffff;
+}
+.role-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  background:white; /* Semi-transparent black */
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.logo-section1 {
+  flex-shrink: 0;
+}
+
+.logo-img1{
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.role-form {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  width: 100%;
+  max-width: 400px;
+}
+
+.role-form h2 {
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  margin-bottom: 20px;
+}
+
+.role-form button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #45f3ff;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.role-form button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 /* video component styling */
@@ -5439,3 +5551,4 @@ input[type="text"] {
     max-width: 100%; /* Full width on small screens */
   }
 }
+/* userdashboard */

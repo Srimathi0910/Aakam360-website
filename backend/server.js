@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const bcrypt = require('bcryptjs');
 const cors = require("cors");
 require("dotenv").config();
 const path = require("path");
@@ -1185,4 +1186,77 @@ app.post('/api/visitors/increment/:role', (req, res) => {
 // Get current visitor counts
 app.get('/api/visitors', (req, res) => {
   res.json(visitorCounts);
+});
+
+
+
+// Signup page
+const jwt = require("jsonwebtoken");
+
+
+// User Schema
+const userSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  email: { type: String, required: true, unique: true },
+  mobileNumber: String,
+  password: { type: String, required: true },
+  agreedToTerms: Boolean,
+});
+
+const User = mongoose.model("User", userSchema);
+
+// Signup API
+app.post("/api/signup", async (req, res) => {
+  try {
+    const { firstName, lastName, email, mobileNumber, password, agreedToTerms } = req.body;
+
+    // Check if the email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      mobileNumber,
+      password: hashedPassword,
+      agreedToTerms,
+    });
+
+    await newUser.save();
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (err) {
+    console.error("Signup error:", err);
+    res.status(500).json({ message: "Server error during signup" });
+  }
+});
+
+// Login API
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+    res.json({ token });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Server error during login" });
+  }
 });

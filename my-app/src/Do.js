@@ -7,6 +7,7 @@ import whatWeDoImage2 from "../src/img/Live-Experience.jpg";
 import whatWeDoImage3 from "../src/img/Training.jpg";
 import whatWeDoImagee4 from "../src/img/Corporate-Awareness.jpg";
 import whatWeDoImage5 from "../src/img/Live-Client-Interactions.jpg";
+import Aakamteaser from "../src/img/Videos/aakam360-teaser.mp4";
 
 
 
@@ -61,6 +62,28 @@ const Do = () => {
                       <h3>Live Client Interactions</h3>
                       <p>Real-world experience to sharpen skills and build lasting professional relationships</p>
                   </div>
+              </div>
+              <div style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "100vh", // optional: vertically centers in full viewport
+                
+              }}>
+                <h1>Watch Our Video</h1>
+                <video
+  style={{
+    width: "600px",
+    height: "400px",
+    objectFit: "cover", // ensures video fills box without black bars
+    backgroundColor: "#000", // fallback background if needed
+  }}
+  controls
+>
+  <source src={Aakamteaser} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
               </div>
     </div>
   )
