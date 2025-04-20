@@ -52,7 +52,7 @@ const Education = () => {
           <h3>Immersive Learning Content Services</h3>
           <p>Immersive Learning Content Services provides top-notch content created by professionals in the education sector.</p>
         </div>
-        </div>ā
+        </div>
       </div>
 
       {/* Bottom Image */}

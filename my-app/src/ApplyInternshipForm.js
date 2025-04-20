@@ -149,7 +149,7 @@ const ApplyInternshipForm = () => {
         });
   
         // Navigate to the "submitted" page
-        navigate("/submitted");
+        navigate("/Applied");
       } catch (error) {
         console.error("Error submitting form:", error);
         alert("Error submitting application.");

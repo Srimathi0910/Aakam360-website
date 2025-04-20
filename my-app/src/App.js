@@ -59,6 +59,7 @@ import Services4 from './Services4';
 import Services5 from './Services5';
 import JobApplyForm from './JobApplyForm';
 import Message from './Message';
+import Message1 from './Message1';
 import GetAQuote from './GetAQuote';
 import Infrastructure from'./Infrastructure';
 import InnovationForm from './InnovationForm';
@@ -144,6 +145,7 @@ const App = () => {
             <Route path="/Research-Development"element={<Services5/>}/>
             <Route path="/job-apply-form"element={<JobApplyForm/>}/>
             <Route path="/submitted"element={<Message/>}/>
+            <Route path="/Applied"element={<Message1/>}/>
             <Route path="/getaquote"element={<GetAQuote/>}/>
             <Route path="/Infrastructure"element={<Infrastructure/>}/>
             <Route path="/InnovationIdeaForm"element={<InnovationForm/>}/>

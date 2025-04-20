@@ -6,6 +6,8 @@ import institution from "../src/img/our5i-2i.png";
 import incubation from "../src/img/our5i-3i.png";
 import innovation from "../src/img/our5i-4i.png";
 import internship from "../src/img/our5i-5i.png";
+import aakamfiveifullimage from '../src/img/fivei-full-image.png';
+
 
 const Our_5i = () => {
   return (
@@ -39,7 +41,11 @@ const Our_5i = () => {
           <h2 >Internship</h2>
           <p>Students evaluate corporate culture, periodic enhancement of curriculum with internships.</p>
         </div>
+
   
+      </div>
+      <div>
+        <img src={aakamfiveifullimage} alt="aakamfiveifullimage" style={{width:"700px",height:"700px",objectFit:"contain"}} />
       </div>
     </section>
   );

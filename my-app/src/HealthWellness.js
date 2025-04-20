@@ -15,7 +15,7 @@ const HealthWellness = () => {
       <div className="hero-section">
         <img src={HealthImage1} alt="Health and Wellness" className="hero-image"  />
         <div className="hero-text">
-          <h1>Empowering Health and Wellness Together</h1>
+          <h1>Empowering Health and Wellness</h1>
           <h3>Prioritize your well-being with innovative solutions and workplace initiatives.</h3>
         </div>
       </div>

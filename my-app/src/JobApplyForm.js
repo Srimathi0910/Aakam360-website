@@ -125,7 +125,7 @@ const JobApplyForm = () => {
       console.log("Form Response:", formResponse.data);
   
       // Navigate to submitted page after successful completion of both requests
-      navigate("/submitted");
+      navigate("/Applied");
     } catch (error) {
       console.error("Error submitting application:", error);
       alert("Error submitting job application. Please try again.");

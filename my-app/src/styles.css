@@ -5437,14 +5437,11 @@ input[type="text"] {
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
   color: white;
   transition: background 0.3s ease;
 }
 
-.role-form button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
+
 
 .role-selector-box h2 {
   margin-bottom: 20px;
@@ -5516,16 +5513,16 @@ input[type="text"] {
   transition: background 0.3s ease;
 }
 
-.role-form button:hover {
+/* .role-form button:hover {
   background-color: rgba(0, 0, 0, 0.9);
-}
+} */
 
 /* video component styling */
 .video-container {
   display: flex;
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
   justify-content: space-between;
-  gap: 24px; /* Reduced gap for better mobile experience */
+  gap: 10px; /* Reduced gap for better mobile experience */
   padding: 16px;
 }
 
@@ -5534,7 +5531,7 @@ input[type="text"] {
   max-width: calc(50% - 24px); /* 2 per row on medium screens */
   aspect-ratio: 16 / 9;
   position: relative;
-  min-width: 250px;
+  min-width: 200px;
   width: 100%;
 }
 

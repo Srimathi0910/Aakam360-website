@@ -205,9 +205,16 @@ const Career = () => {
       ))}
       
       
+      
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", gap: "300px", margin: "20px 0" }}>
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+  <FaArrowDown size={30} color="gray" />
+</div>
       <div>
         <CareerVideos />
-      </div>
       </div>
       {/* Arrow */}
       <div style={{ display: "flex", justifyContent: "center", gap: "300px", margin: "20px 0" }}>

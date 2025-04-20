@@ -1,5 +1,5 @@
-// my-app/src/Allone.js
-import React, { useState } from "react";
+// src/Allone.js
+import React, { useState, useEffect } from "react";
 import RoleSelector from "./RoleSelector";
 import Hero_section from "./Hero_section";
 import Our_5i from "./Our_5i";
@@ -11,28 +11,37 @@ import Information from "./Information";
 import Onboarding from "./Onboarding";
 import WhyChooseUs from "./WhyChooseUs";
 import VisitorCount from "./VisitorCount";
-import LoginPage from "./LoginPage";
+import Lottie from 'lottie-react';
+import loadingAnimation from '../src/img/Loading.json'; 
 
 const Allone = () => {
   const [userRole, setUserRole] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // ✅ Load from sessionStorage (clears after refresh)
+  useEffect(() => {
+    const storedRole = sessionStorage.getItem("userRole");
+    if (storedRole) {
+      setUserRole(storedRole);
+    }
+    setLoading(false);
+  }, []);
 
   const handleRoleSelection = (role) => {
-    setLoading(true); // Start loading
     setUserRole(role);
-    setLoading(false); // Stop loading after role is set
   };
+
+  if (loading) {
+    return <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />;
+  }
 
   return (
     <div>
       {!userRole ? (
         <RoleSelector onSelectRole={handleRoleSelection} />
-      ) : loading ? (
-        <div className="loading">Loading...</div> // Loading state
       ) : (
         <div className="page-content">
           <Hero_section userRole={userRole} />
-
           <Our_5i />
           <Career />
           <Technology />
@@ -41,9 +50,13 @@ const Allone = () => {
           <Information />
           <Onboarding />
           <WhyChooseUs />
-          <VisitorCount trigger={userRole} /> {/* Pass trigger for live updates */}
-          <LoginPage />
-          
+          <VisitorCount trigger={userRole} />
+
+          {/* Optional "Change Role" button for dev/debug */}
+          {/* <button onClick={() => {
+            sessionStorage.removeItem("userRole");
+            window.location.reload();
+          }}>Change Role</button> */}
         </div>
       )}
     </div>
