@@ -19,6 +19,7 @@ import eventimg12 from '../src/img/Events/event12.jpg';
 import eventimg13 from '../src/img/Events/event13.jpg';
 import eventimg14 from '../src/img/Events/event14.jpg';
 import eventimg15 from '../src/img/Events/event15.jpg';
+import eventimg16 from '../src/img/Events/event16.jpg';
 import Events2 from './Events2';
 
 const posters = [
@@ -26,6 +27,12 @@ const posters = [
 ];
 
 const events = [
+  {
+    img: eventimg16,
+    name: "Monthly Founder's Meetup",
+    description: 'How Institutions Powered Startups, Innovation & Entrepreneurship on 12.04.2025 by Mr.Thirumoorthy Arumugam-Founder of Aakam360'
+  },
+  
   { img: eventimg1, name: 'Zero to One', description: 'A Unique Digital Transformation of SSEI inaugurated on 25.03.2023 by Mr. Charles Godwin - Zoho HR Lead' },
   { img: eventimg2, name: 'Student Incubation', description: 'Inauguration of student incubation by III years for their own product in the company name of Eterio.' },
   { img: eventimg3, name: 'Inauguration of Dreamdaa', description: 'An AI-assisted training platform was launched in our institution on 30.03.2023 by our chief guests Mr.Sivakumar Sadayappan and Kaviya Raj Kamaraj' },

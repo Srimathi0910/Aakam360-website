@@ -20,11 +20,12 @@ const RoleSelector = ({ onSelectRole }) => {
   return (
     <div className="role-selector-overlay">
       <div className="role-selector-box">
-        <div className="role-container">
-          {/* Left - Logo */}
-          <div className="logo-section1">
+      <div className="logo-section1">
             <img src={Aakamlogo} alt="Aakam Logo" className="logo-img1" />
           </div>
+        <div className="role-container">
+          {/* Left - Logo */}
+          
 
           {/* Right - Form */}
           <form className="role-form" style={{ zIndex: "20000000" }}>
