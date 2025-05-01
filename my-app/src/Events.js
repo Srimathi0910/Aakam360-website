@@ -20,6 +20,10 @@ import eventimg13 from '../src/img/Events/event13.jpg';
 import eventimg14 from '../src/img/Events/event14.jpg';
 import eventimg15 from '../src/img/Events/event15.jpg';
 import eventimg16 from '../src/img/Events/event16.jpg';
+import eventimg17 from '../src/img/Events/event17.webp';
+import eventimg18 from '../src/img/Events/event18.jpg';
+import eventimg19 from '../src/img/Events/event19.jpg';
+import eventimg20 from '../src/img/Events/event20.jpg';
 import Events2 from './Events2';
 
 const posters = [
@@ -27,6 +31,28 @@ const posters = [
 ];
 
 const events = [
+  {
+    img: eventimg18,
+    name: "Alpha Year Of Aakam360",
+    description: 'From bold beginnings to breakthrough moments,the Alpha year was a journey of creativity,dedication, and transformation'
+  },
+  {
+    img: eventimg20,
+    name: "Alpha Year Of Aakam360",
+    description: "From bold beginnings to breakthrough moments,the Alpha year was a journey of creativity,dedication, and transformation"
+  },
+  {
+    img: eventimg17,
+    name: "HOBNOB'S25 ",
+    description: "The first edition of HOBNOB'25"
+  },
+  {
+    img: eventimg19,
+    name: "HOBNOB'S25 ",
+    description: "The first edition of HOBNOB'25"
+  },
+  
+  
   {
     img: eventimg16,
     name: "Monthly Founder's Meetup",

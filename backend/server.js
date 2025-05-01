@@ -387,19 +387,19 @@ app.listen(PORT, () => {
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  port: 587,                // ✅ Correct TLS port
-  secure: false,            // ✅ Must be false for port 587 (STARTTLS)
+  port: 587, // Use 587 for STARTTLS
+  secure: false, // Must be false for port 587
   auth: {
-      user: process.env.EMAIL_USER,  // ✅ Your Gmail or Google App email
-      pass: process.env.EMAIL_PASS,  // ✅ App-specific password, NOT real Gmail password
+    user: process.env.EMAIL_USER, // Your Gmail address
+    pass: process.env.EMAIL_PASS, // App password (not regular Gmail password)
   },
   tls: {
-      rejectUnauthorized: false,     // ⚠️ OK for dev, but not recommended in prod
+    rejectUnauthorized: false, // Accept self-signed certs (use true in production)
   },
-  logger: true,             // ✅ Debug logging
-  debug: true,              // ✅ More detailed output
-  socketTimeout: 60000,     // ✅ Good (60s)
-  connectionTimeout: 60000, // ✅ Good (60s)
+  socketTimeout: 5000, // Optional: wait max 5s for socket
+  connectionTimeout: 5000, // Optional: wait max 5s for connection
+  logger: false, // Optional: set to true for debugging
+  debug: false,  // Optional: set to true for detailed logs
 });
 
 
