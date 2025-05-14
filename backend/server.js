@@ -396,8 +396,8 @@ const transporter = nodemailer.createTransport({
   tls: {
     rejectUnauthorized: false, // Accept self-signed certs (use true in production)
   },
-  socketTimeout: 5000, // Optional: wait max 5s for socket
-  connectionTimeout: 5000, // Optional: wait max 5s for connection
+  socketTimeout: 10000, // Optional: wait max 5s for socket
+  connectionTimeout: 10000, // Optional: wait max 5s for connection
   logger: false, // Optional: set to true for debugging
   debug: false,  // Optional: set to true for detailed logs
 });
@@ -1259,4 +1259,4 @@ app.post("/api/login", async (req, res) => {
     console.error("Login error:", error);
     res.status(500).json({ error: "Server error during login" });
   }
-});
+}); 
