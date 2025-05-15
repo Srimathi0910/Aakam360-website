@@ -263,7 +263,7 @@ const App = () => {
   return (
     <Router>
       <ThemeProvider>
-        <ScrollToTop /> 
+        {/* <ScrollToTop />  */}
         <Header />
         <div className="content">
           <Routes>

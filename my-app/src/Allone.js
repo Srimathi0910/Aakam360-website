@@ -32,8 +32,23 @@ const Allone = () => {
   };
 
   if (loading) {
-    return <Lottie animationData={loadingAnimation} loop={true} style={{ width: 60, height: 60 }} />;
-  }
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh', // or a specific height depending on your layout
+      width: '100%',
+    }}>
+      <Lottie
+        animationData={loadingAnimation}
+        loop={true}
+        autoplay={true}
+        style={{ width: 100, height: 100 }}
+      />
+    </div>
+  );
+}
 
   return (
     <div>

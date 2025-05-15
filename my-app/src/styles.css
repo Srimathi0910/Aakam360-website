@@ -5576,4 +5576,20 @@ input[type="text"] {
     max-width: 100%; /* Full width on small screens */
   }
 }
-/* userdashboard */
+.loader-container {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  height: 100vh;           /* full viewport height */
+  width: 100vw;            /* full viewport width */
+  position: fixed;         /* keeps it over the page content */
+  top: 0;
+  left: 0;
+  background-color: white; /* optional, can be transparent or themed */
+  z-index: 9999;           /* ensures it's on top */
+}
+
+.lottie-animation {
+  width: 150px;   /* adjust size as needed */
+  height: 150px;
+}

@@ -19,6 +19,28 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads");
 }
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    let folder = "uploads";
+
+    if (req.path.includes("startup-form")) folder = "uploads/startups";
+    else if (req.path.includes("apply")) folder = "uploads/internships";
+    else if (req.path.includes("get-a-quote")) folder = "uploads/quotes";
+    else if (req.path.includes("job-applications")) folder = "uploads/jobs";
+
+    // Ensure the folder exists
+    if (!fs.existsSync(folder)) {
+      fs.mkdirSync(folder, { recursive: true });
+    }
+
+    cb(null, folder);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const upload = multer({ storage });
+
 
 // MongoDB Connection (Use only one)
 mongoose
@@ -61,16 +83,7 @@ const jobApplicationSchema = new mongoose.Schema({
 });
 const JobApplication = mongoose.model("JobApplicationForm", jobApplicationSchema);
 
-// Multer Storage Configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-const upload = multer({ storage });
+
 
 // API Routes
 
@@ -396,10 +409,7 @@ const transporter = nodemailer.createTransport({
   tls: {
     rejectUnauthorized: false, // Accept self-signed certs (use true in production)
   },
-  socketTimeout: 10000, // Optional: wait max 5s for socket
-  connectionTimeout: 10000, // Optional: wait max 5s for connection
-  logger: false, // Optional: set to true for debugging
-  debug: false,  // Optional: set to true for detailed logs
+  
 });
 
 
@@ -1191,72 +1201,72 @@ app.get('/api/visitors', (req, res) => {
 
 
 // Signup page
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 
 
-// User Schema
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: { type: String, required: true, unique: true },
-  mobileNumber: String,
-  password: { type: String, required: true },
-  agreedToTerms: Boolean,
-});
+// // User Schema
+// const userSchema = new mongoose.Schema({
+//   firstName: String,
+//   lastName: String,
+//   email: { type: String, required: true, unique: true },
+//   mobileNumber: String,
+//   password: { type: String, required: true },
+//   agreedToTerms: Boolean,
+// });
 
-const User = mongoose.model("User", userSchema);
+// const User = mongoose.model("User", userSchema);
 
-// Signup API
-app.post("/api/signup", async (req, res) => {
-  try {
-    const { firstName, lastName, email, mobileNumber, password, agreedToTerms } = req.body;
+// // Signup API
+// app.post("/api/signup", async (req, res) => {
+//   try {
+//     const { firstName, lastName, email, mobileNumber, password, agreedToTerms } = req.body;
 
-    // Check if the email already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "Email already exists" });
-    }
+//     // Check if the email already exists
+//     const existingUser = await User.findOne({ email });
+//     if (existingUser) {
+//       return res.status(400).json({ message: "Email already exists" });
+//     }
 
-    // Hash the password before saving
-    const hashedPassword = await bcrypt.hash(password, 10);
+//     // Hash the password before saving
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({
-      firstName,
-      lastName,
-      email,
-      mobileNumber,
-      password: hashedPassword,
-      agreedToTerms,
-    });
+//     const newUser = new User({
+//       firstName,
+//       lastName,
+//       email,
+//       mobileNumber,
+//       password: hashedPassword,
+//       agreedToTerms,
+//     });
 
-    await newUser.save();
-    res.status(201).json({ message: "User registered successfully" });
-  } catch (err) {
-    console.error("Signup error:", err);
-    res.status(500).json({ message: "Server error during signup" });
-  }
-});
+//     await newUser.save();
+//     res.status(201).json({ message: "User registered successfully" });
+//   } catch (err) {
+//     console.error("Signup error:", err);
+//     res.status(500).json({ message: "Server error during signup" });
+//   }
+// });
 
-// Login API
-app.post("/api/login", async (req, res) => {
-  const { email, password } = req.body;
+// // Login API
+// app.post("/api/login", async (req, res) => {
+//   const { email, password } = req.body;
 
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ error: "Invalid credentials" });
-    }
+//   try {
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       return res.status(400).json({ error: "Invalid credentials" });
+//     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ error: "Invalid credentials" });
-    }
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res.status(400).json({ error: "Invalid credentials" });
+//     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.json({ token });
-  } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).json({ error: "Server error during login" });
-  }
-}); 
+//     res.json({ token });
+//   } catch (error) {
+//     console.error("Login error:", error);
+//     res.status(500).json({ error: "Server error during login" });
+//   }
+// }); 
