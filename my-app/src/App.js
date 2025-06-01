@@ -359,6 +359,7 @@ import History from './History';
 import Events from './Events';
 import Career from './Career';
 import Technology from './Technology';
+import Footer from './Footer';
 import Feedback from './Feedback';
 import Contact from './Contact';
 import Banking from './Banking';
@@ -405,6 +406,7 @@ import Infrastructure from './Infrastructure';
 import InnovationForm from './InnovationForm';
 import LoginPage from './LoginPage';
 import SignUp from './SignUp';
+import ScrollToTop from './ScrollToTop';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -436,6 +438,7 @@ const App = () => {
   return (
     <Router>
       <ThemeProvider>
+         <ScrollToTop /> 
         <Header />
         <div className="content">
           <Routes>
@@ -498,6 +501,7 @@ const App = () => {
             <Route path="/SignUp" element={<SignUp />} />
           </Routes>
         </div>
+        <Footer />
       </ThemeProvider>
     </Router>
   );
