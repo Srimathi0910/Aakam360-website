@@ -95,7 +95,7 @@ const Events = () => {
       
       {/* Events Section */}
       
-      <h1 style={{padding:"30px"}}>Our 15 Events</h1>
+      <h1 style={{padding:"30px"}}>Our  Events</h1>
       <div className="event-grid">
         {events.map((event, index) => (
           <div className="event-card" key={index}>

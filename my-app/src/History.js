@@ -32,7 +32,7 @@ const historyData = [
     image: HistoryImage2,
   },
   {
-    year: "2024",
+    year: "2025",
     title: "Continued Growth",
     description: [
       "As of 2024, Aakam360 continues to innovate.",
