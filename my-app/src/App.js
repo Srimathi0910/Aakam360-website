@@ -672,8 +672,6 @@ const App = () => {
             <Route path="/getaquote" element={<GetAQuote />} />
             <Route path="/Infrastructure" element={<Infrastructure />} />
             <Route path="/InnovationIdeaForm" element={<InnovationForm />} />
-            <Route path="/LoginPage" element={<LoginPage />} />
-            <Route path="/SignUp" element={<SignUp />} />
           </Routes>
         </div>
         <Footer />
